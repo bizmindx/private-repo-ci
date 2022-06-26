@@ -26,6 +26,9 @@ jobs:
       - name: Install Node dependencies
         run: yarn install
 
+      - name: Install globally
+        run: npm i -g solhint
+
       - name: Lint Contracts
         run: yarn lint:contracts
         continue-on-error: true
