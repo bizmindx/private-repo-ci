@@ -1,3 +1,11 @@
+#Included:
+#                 1. Install and Download Dependencies
+#                 2. Compile Contracts
+#                 3. Deploy a Contract to the Local network
+#                 4. Test the locally deployed Contract in the local network.
+#                 5. Run all tests
+#                 6. slither integration
+
 name: Run Tests
 
 on: [push]
@@ -16,12 +24,18 @@ jobs:
         uses: c-hive/gha-npm-cache@v1
 
       - name: Install Node dependencies
-        run: npm install
+        run: yarn install
+
+      - name: Lint Contracts
+        run: yarn lint:contracts
+        continue-on-error: true
+
+      - name: Compile & Build Contract
+        run: yarn compile
 
       - name: Run Test
         run: |
-          npm test
-          npm run coverage
+          yarn test
       - uses: actions/upload-artifact@v2
         with:
           name: coverage-report
