@@ -4,7 +4,7 @@
     "compile": "npx hardhat compile",
     "test": "npx hardhat test",
     "coverage": "npx hardhat coverage",
-    "lint:contracts": "solhint './Contracts/**/*.sol'"
+    "lint:contracts": "solhint './contracts/**/*.sol'"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.5",
