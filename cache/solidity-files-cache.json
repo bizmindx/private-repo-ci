@@ -1,0 +1,2481 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/conviction/FairSideConviction.sol": {
+      "lastModificationDate": 1654233883357,
+      "contentHash": "ebeb0333aea3388b6bb9a5dd96135b86",
+      "sourceName": "contracts/conviction/FairSideConviction.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../dependencies/SafeUint224.sol",
+        "../interfaces/IERC20ConvictionScore.sol",
+        "@openzeppelin/contracts/token/ERC721/ERC721.sol",
+        "@openzeppelin/contracts/token/ERC20/SafeERC20.sol",
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "@openzeppelin/contracts/math/SafeMath.sol",
+        "../dependencies/DSMath.sol",
+        "../interfaces/IFairSideConviction.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "FairSideConviction"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/dependencies/SafeUint224.sol": {
+      "lastModificationDate": 1652781656470,
+      "contentHash": "c062f75ac559ae159acf8bf8bfcf81e8",
+      "sourceName": "contracts/dependencies/SafeUint224.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "SafeUint224"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol": {
+      "lastModificationDate": 1653487182322,
+      "contentHash": "eabcb7fd9472ae9ca34c07172a39f210",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/ERC721.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../utils/Context.sol",
+        "./IERC721.sol",
+        "./IERC721Metadata.sol",
+        "./IERC721Enumerable.sol",
+        "./IERC721Receiver.sol",
+        "../../introspection/ERC165.sol",
+        "../../math/SafeMath.sol",
+        "../../utils/Address.sol",
+        "../../utils/EnumerableSet.sol",
+        "../../utils/EnumerableMap.sol",
+        "../../utils/Strings.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "ERC721"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@openzeppelin/contracts/token/ERC20/SafeERC20.sol": {
+      "lastModificationDate": 1653487182444,
+      "contentHash": "33e22842646d746e5c4124c2fdc051aa",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/SafeERC20.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IERC20.sol",
+        "../../math/SafeMath.sol",
+        "../../utils/Address.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "SafeERC20"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+      "lastModificationDate": 1653487182389,
+      "contentHash": "e0a41531d159d3a32f84b7a3ecf9fabb",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "IERC20"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@openzeppelin/contracts/math/SafeMath.sol": {
+      "lastModificationDate": 1653487182448,
+      "contentHash": "e03e12206057e809eb76c5f681170c32",
+      "sourceName": "@openzeppelin/contracts/math/SafeMath.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "SafeMath"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/dependencies/DSMath.sol": {
+      "lastModificationDate": 1652781656469,
+      "contentHash": "45cdf402023f80285abddbb147f7dbac",
+      "sourceName": "contracts/dependencies/DSMath.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">0.4.13"
+      ],
+      "artifacts": [
+        "DSMath"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/interfaces/IFairSideConviction.sol": {
+      "lastModificationDate": 1652781656471,
+      "contentHash": "c123f7ba1f50b02693f43748598cd15a",
+      "sourceName": "contracts/interfaces/IFairSideConviction.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "IFairSideConviction"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@openzeppelin/contracts/utils/Context.sol": {
+      "lastModificationDate": 1653487182151,
+      "contentHash": "2adbd82f6d055a4751566d4671512b03",
+      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "Context"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol": {
+      "lastModificationDate": 1653487182392,
+      "contentHash": "e82621b83943f11c44988c60e83d6ebc",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../introspection/IERC165.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.2 <0.8.0"
+      ],
+      "artifacts": [
+        "IERC721"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@openzeppelin/contracts/token/ERC721/IERC721Metadata.sol": {
+      "lastModificationDate": 1653487182399,
+      "contentHash": "370e7a48f316401b5063bcb604843e1b",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721Metadata.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IERC721.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.2 <0.8.0"
+      ],
+      "artifacts": [
+        "IERC721Metadata"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@openzeppelin/contracts/token/ERC721/IERC721Enumerable.sol": {
+      "lastModificationDate": 1653487182394,
+      "contentHash": "eaebc3874248c26f6ea0b13b9a140a94",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721Enumerable.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IERC721.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.2 <0.8.0"
+      ],
+      "artifacts": [
+        "IERC721Enumerable"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol": {
+      "lastModificationDate": 1653487182402,
+      "contentHash": "fad0b3f4424bdbb4b35467b29ea8d334",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "IERC721Receiver"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@openzeppelin/contracts/introspection/ERC165.sol": {
+      "lastModificationDate": 1653487182236,
+      "contentHash": "08f854e2dd3c262845bba38c9b48e4e0",
+      "sourceName": "@openzeppelin/contracts/introspection/ERC165.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IERC165.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "ERC165"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@openzeppelin/contracts/utils/Address.sol": {
+      "lastModificationDate": 1653487182112,
+      "contentHash": "7aa46886ff5abe7515496208a5e2ce5a",
+      "sourceName": "@openzeppelin/contracts/utils/Address.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.2 <0.8.0"
+      ],
+      "artifacts": [
+        "Address"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@openzeppelin/contracts/utils/EnumerableSet.sol": {
+      "lastModificationDate": 1653487182181,
+      "contentHash": "db7b1afdb2c204e1e52100b79f0c847e",
+      "sourceName": "@openzeppelin/contracts/utils/EnumerableSet.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "EnumerableSet"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@openzeppelin/contracts/utils/EnumerableMap.sol": {
+      "lastModificationDate": 1653487182174,
+      "contentHash": "b1bb8570824c668943149211d74d6c51",
+      "sourceName": "@openzeppelin/contracts/utils/EnumerableMap.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "EnumerableMap"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@openzeppelin/contracts/utils/Strings.sol": {
+      "lastModificationDate": 1653487182452,
+      "contentHash": "c86a31bacf868d392eda08a0eccc4735",
+      "sourceName": "@openzeppelin/contracts/utils/Strings.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "Strings"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@openzeppelin/contracts/introspection/IERC165.sol": {
+      "lastModificationDate": 1653487182382,
+      "contentHash": "0d62a8380952235f135dae91590f90a3",
+      "sourceName": "@openzeppelin/contracts/introspection/IERC165.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "IERC165"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/dependencies/ERC20ConvictionScore.sol": {
+      "lastModificationDate": 1654233883358,
+      "contentHash": "91ea35542c68bc68939f4e139f9f9b09",
+      "sourceName": "contracts/dependencies/ERC20ConvictionScore.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../dependencies/SafeUint224.sol",
+        "../interfaces/IFairSideConviction.sol",
+        "./CurveLock.sol",
+        "./DSMath.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "ERC20ConvictionScore"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/dependencies/CurveLock.sol": {
+      "lastModificationDate": 1654233883357,
+      "contentHash": "20b19fe5ae156d15b201db737facb69c",
+      "sourceName": "contracts/dependencies/CurveLock.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./TributeAccrual.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "CurveLock"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/dependencies/TributeAccrual.sol": {
+      "lastModificationDate": 1652781656470,
+      "contentHash": "49f244b7d5c07cb9f571827f108ae829",
+      "sourceName": "contracts/dependencies/TributeAccrual.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/math/SafeMath.sol",
+        "@openzeppelin/contracts/drafts/ERC20Permit.sol",
+        "../dependencies/SafeUint32.sol",
+        "../dependencies/SafeUint224.sol",
+        "../interfaces/IERC20ConvictionScore.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "TributeAccrual"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@openzeppelin/contracts/drafts/ERC20Permit.sol": {
+      "lastModificationDate": 1653487182302,
+      "contentHash": "2fe7726fa4d3761f947524c4a1e3c90e",
+      "sourceName": "@openzeppelin/contracts/drafts/ERC20Permit.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../token/ERC20/ERC20.sol",
+        "./IERC20Permit.sol",
+        "../cryptography/ECDSA.sol",
+        "../utils/Counters.sol",
+        "./EIP712.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.5 <0.8.0"
+      ],
+      "artifacts": [
+        "ERC20Permit"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/dependencies/SafeUint32.sol": {
+      "lastModificationDate": 1652781656470,
+      "contentHash": "17c644387e0ce80331d2024f0b5d3b0d",
+      "sourceName": "contracts/dependencies/SafeUint32.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "SafeUint32"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/interfaces/IERC20ConvictionScore.sol": {
+      "lastModificationDate": 1654233883358,
+      "contentHash": "87e9debe98c60409ef72bdd089353767",
+      "sourceName": "contracts/interfaces/IERC20ConvictionScore.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./ITributeAccrual.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "IERC20ConvictionScore"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
+      "lastModificationDate": 1653487182284,
+      "contentHash": "8065b340476f61365c076897199425f1",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../utils/Context.sol",
+        "./IERC20.sol",
+        "../../math/SafeMath.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "ERC20"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@openzeppelin/contracts/drafts/IERC20Permit.sol": {
+      "lastModificationDate": 1653487182391,
+      "contentHash": "554ef6825dd2112860a7f82be25dab45",
+      "sourceName": "@openzeppelin/contracts/drafts/IERC20Permit.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "IERC20Permit"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@openzeppelin/contracts/cryptography/ECDSA.sol": {
+      "lastModificationDate": 1653487182167,
+      "contentHash": "373a483bb0a88668c0735924d84f50f1",
+      "sourceName": "@openzeppelin/contracts/cryptography/ECDSA.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "ECDSA"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@openzeppelin/contracts/utils/Counters.sol": {
+      "lastModificationDate": 1653487182157,
+      "contentHash": "304a56eb1322144704fb39f8c7e6d722",
+      "sourceName": "@openzeppelin/contracts/utils/Counters.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../math/SafeMath.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "Counters"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@openzeppelin/contracts/drafts/EIP712.sol": {
+      "lastModificationDate": 1653487182169,
+      "contentHash": "fc999322255c14bf39f2047b1b27eefa",
+      "sourceName": "@openzeppelin/contracts/drafts/EIP712.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "EIP712"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/interfaces/ITributeAccrual.sol": {
+      "lastModificationDate": 1652781656471,
+      "contentHash": "cb8913f45a070dd5b4b08fd9febd6114",
+      "sourceName": "contracts/interfaces/ITributeAccrual.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "ITributeAccrual"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/token/FSD.sol": {
+      "lastModificationDate": 1654233883358,
+      "contentHash": "92e0907a408a5a3b684ff87519c75931",
+      "sourceName": "contracts/token/FSD.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/utils/Address.sol",
+        "@openzeppelin/contracts/token/ERC20/SafeERC20.sol",
+        "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol",
+        "../dependencies/ERC20ConvictionScore.sol",
+        "../dependencies/Withdrawable.sol",
+        "../dependencies/DSMath.sol",
+        "../dependencies/FSOwnable.sol",
+        "../interfaces/IFSDNetwork.sol",
+        "../interfaces/IFSDVesting.sol",
+        "../interfaces/IFSDVestingFactory.sol",
+        "../interfaces/IFSD.sol",
+        "./ABC.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "FSD"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol": {
+      "lastModificationDate": 1653487182983,
+      "contentHash": "3fd36426274a5b35f7e702f87ba08a8e",
+      "sourceName": "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IUniswapV2Router01.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.2"
+      ],
+      "artifacts": [
+        "IUniswapV2Router02"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/dependencies/Withdrawable.sol": {
+      "lastModificationDate": 1652781656470,
+      "contentHash": "5973fa4cbe3b6c53847167928e859df9",
+      "sourceName": "contracts/dependencies/Withdrawable.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/utils/Address.sol",
+        "./DSMath.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "Withdrawable"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/dependencies/FSOwnable.sol": {
+      "lastModificationDate": 1652781656470,
+      "contentHash": "a3a61ad7ed8b1dbb67519c9ae9add575",
+      "sourceName": "contracts/dependencies/FSOwnable.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "FSOwnable"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/interfaces/IFSDNetwork.sol": {
+      "lastModificationDate": 1652781656470,
+      "contentHash": "57fd60095ab798e7a8fdeb161b326915",
+      "sourceName": "contracts/interfaces/IFSDNetwork.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "IFSDNetwork"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/interfaces/IFSDVesting.sol": {
+      "lastModificationDate": 1652781656470,
+      "contentHash": "3aa9b18dcf505ef2d678b79e6e965c48",
+      "sourceName": "contracts/interfaces/IFSDVesting.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "IFSDVesting"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/interfaces/IFSDVestingFactory.sol": {
+      "lastModificationDate": 1652781656470,
+      "contentHash": "305ecf03c8d3205dee993dcd3bef00bb",
+      "sourceName": "contracts/interfaces/IFSDVestingFactory.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "IFSDVestingFactory"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/interfaces/IFSD.sol": {
+      "lastModificationDate": 1652781656470,
+      "contentHash": "1a058793e67247e068fdb6177500f902",
+      "sourceName": "contracts/interfaces/IFSD.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "IFSD"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/token/ABC.sol": {
+      "lastModificationDate": 1652781656472,
+      "contentHash": "a708397daf0d65c9b16339bf229e48ac",
+      "sourceName": "contracts/token/ABC.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../dependencies/DSMath.sol",
+        "../dependencies/FairSideFormula.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "ABC"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router01.sol": {
+      "lastModificationDate": 1653487182980,
+      "contentHash": "95d8729b2c698dc663322167b3c085fe",
+      "sourceName": "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router01.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.2"
+      ],
+      "artifacts": [
+        "IUniswapV2Router01"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/dependencies/FairSideFormula.sol": {
+      "lastModificationDate": 1652781656470,
+      "contentHash": "7ef113f81ff5dcf9a5e733e95cede0af",
+      "sourceName": "contracts/dependencies/FairSideFormula.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./ABDKMathQuad.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "FairSideFormula"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/dependencies/ABDKMathQuad.sol": {
+      "lastModificationDate": 1652781656469,
+      "contentHash": "cac9065ba549784308f77452faa4b3f8",
+      "sourceName": "contracts/dependencies/ABDKMathQuad.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.5.0 || ^0.6.0 || ^0.7.0"
+      ],
+      "artifacts": [
+        "ABDKMathQuad"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/network/FSDNetwork.sol": {
+      "lastModificationDate": 1653482944753,
+      "contentHash": "1fe58eea678c9fc345ca5e8e7afce9ad",
+      "sourceName": "contracts/network/FSDNetwork.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/cryptography/ECDSA.sol",
+        "@openzeppelin/contracts/drafts/EIP712.sol",
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        "@openzeppelin/contracts/token/ERC20/SafeERC20.sol",
+        "@openzeppelin/contracts/utils/Address.sol",
+        "@uniswap/lib/contracts/libraries/FixedPoint.sol",
+        "../interfaces/chainlink/AggregatorV3Interface.sol",
+        "../dependencies/FairSideFormula.sol",
+        "../dependencies/DSMath.sol",
+        "../token/FSD.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "FSDNetwork"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@uniswap/lib/contracts/libraries/FixedPoint.sol": {
+      "lastModificationDate": 1653487174064,
+      "contentHash": "9c78b75695500ec38a85fea7d923fbf0",
+      "sourceName": "@uniswap/lib/contracts/libraries/FixedPoint.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./FullMath.sol",
+        "./Babylonian.sol",
+        "./BitMath.sol"
+      ],
+      "versionPragmas": [
+        ">=0.4.0"
+      ],
+      "artifacts": [
+        "FixedPoint"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/interfaces/chainlink/AggregatorV3Interface.sol": {
+      "lastModificationDate": 1652781656471,
+      "contentHash": "7cdf8848bd7f11aafbde46fea2f0c111",
+      "sourceName": "contracts/interfaces/chainlink/AggregatorV3Interface.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "AggregatorV3Interface"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@uniswap/lib/contracts/libraries/FullMath.sol": {
+      "lastModificationDate": 1653487174181,
+      "contentHash": "23bbd047cedfd8027fb139fcab949cc0",
+      "sourceName": "@uniswap/lib/contracts/libraries/FullMath.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.4.0"
+      ],
+      "artifacts": [
+        "FullMath"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@uniswap/lib/contracts/libraries/Babylonian.sol": {
+      "lastModificationDate": 1653487173987,
+      "contentHash": "3f7a9d2b13eebc20350a1cc42ed09b16",
+      "sourceName": "@uniswap/lib/contracts/libraries/Babylonian.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.4.0"
+      ],
+      "artifacts": [
+        "Babylonian"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@uniswap/lib/contracts/libraries/BitMath.sol": {
+      "lastModificationDate": 1653487174016,
+      "contentHash": "9268c1120c875c017e31caad9aa38921",
+      "sourceName": "@uniswap/lib/contracts/libraries/BitMath.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "BitMath"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/token/FSDVestingKOL.sol": {
+      "lastModificationDate": 1653482944754,
+      "contentHash": "87015628f0b44bc083cfec9ad8d9fc17",
+      "sourceName": "contracts/token/FSDVestingKOL.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/SafeERC20.sol",
+        "@openzeppelin/contracts/token/ERC721/IERC721.sol",
+        "../interfaces/IFairSideDAO.sol",
+        "../interfaces/IFSDVesting.sol",
+        "../interfaces/IFSDVestingFactory.sol",
+        "../interfaces/IERC20ConvictionScore.sol",
+        "../dependencies/DSMath.sol",
+        "../dependencies/FSOwnable.sol",
+        "../dependencies/SafeUint224.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "FSDVestingKOL"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/interfaces/IFairSideDAO.sol": {
+      "lastModificationDate": 1652781656471,
+      "contentHash": "69bd324f034984bcd74a1eaad67d9f2d",
+      "sourceName": "contracts/interfaces/IFairSideDAO.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "IFairSideDAO"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/token/FSDVestingVC.sol": {
+      "lastModificationDate": 1653482944754,
+      "contentHash": "ee9791b797098cb5cd625e049cb7c580",
+      "sourceName": "contracts/token/FSDVestingVC.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/SafeERC20.sol",
+        "@openzeppelin/contracts/token/ERC721/IERC721.sol",
+        "../interfaces/IFairSideDAO.sol",
+        "../interfaces/IFSDVesting.sol",
+        "../interfaces/IFSDVestingFactory.sol",
+        "../interfaces/IERC20ConvictionScore.sol",
+        "../dependencies/DSMath.sol",
+        "../dependencies/FSOwnable.sol",
+        "../dependencies/SafeUint224.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "FSDVestingVC"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/token/FSDVestingPRE.sol": {
+      "lastModificationDate": 1653482944754,
+      "contentHash": "622e0d34a1e1f5acfdc65b151534ec13",
+      "sourceName": "contracts/token/FSDVestingPRE.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/SafeERC20.sol",
+        "@openzeppelin/contracts/token/ERC721/IERC721.sol",
+        "../interfaces/IFairSideDAO.sol",
+        "../interfaces/IFSDVesting.sol",
+        "../interfaces/IFSDVestingFactory.sol",
+        "../interfaces/IERC20ConvictionScore.sol",
+        "../dependencies/DSMath.sol",
+        "../dependencies/FSOwnable.sol",
+        "../dependencies/SafeUint224.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "FSDVestingPRE"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/dependencies/SignatureWhitelist.sol": {
+      "lastModificationDate": 1652781656470,
+      "contentHash": "2bd88e61624f23d1d21059921b3c9eea",
+      "sourceName": "contracts/dependencies/SignatureWhitelist.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/cryptography/ECDSA.sol",
+        "@openzeppelin/contracts/drafts/EIP712.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "SignatureWhitelist"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/token/FSDMinter.sol": {
+      "lastModificationDate": 1652781656472,
+      "contentHash": "c06b83051dba27e8254e9b8db931093d",
+      "sourceName": "contracts/token/FSDMinter.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/utils/Address.sol",
+        "@openzeppelin/contracts/drafts/IERC20Permit.sol",
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "../dependencies/SignatureWhitelist.sol",
+        "../dependencies/DSMath.sol",
+        "../dependencies/FSOwnable.sol",
+        "../interfaces/IFSDVesting.sol",
+        "../interfaces/IFSDVestingFactory.sol",
+        "../interfaces/IFSD.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "FSDMinter"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/token/FSDVestingFactory.sol": {
+      "lastModificationDate": 1652781656472,
+      "contentHash": "1dee3870ac0d93a38b4f5f043d7263ad",
+      "sourceName": "contracts/token/FSDVestingFactory.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/proxy/Clones.sol",
+        "../interfaces/IFSDVestingFactory.sol",
+        "./FSDVestingPRE.sol",
+        "./FSDVestingVC.sol",
+        "./FSDVestingKOL.sol",
+        "../dependencies/FSOwnable.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "FSDVestingFactory"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/node_modules/@openzeppelin/contracts/proxy/Clones.sol": {
+      "lastModificationDate": 1653487182128,
+      "contentHash": "fc407ad42a493624854f6b33c44e9b00",
+      "sourceName": "@openzeppelin/contracts/proxy/Clones.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "Clones"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/zap/Zapper.sol": {
+      "lastModificationDate": 1652781656472,
+      "contentHash": "afc78261ff2aab02b2774a186430f425",
+      "sourceName": "contracts/zap/Zapper.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "@openzeppelin/contracts/token/ERC20/SafeERC20.sol",
+        "@openzeppelin/contracts/utils/Address.sol",
+        "../interfaces/IFSDMinter.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "Zapper"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/interfaces/IFSDMinter.sol": {
+      "lastModificationDate": 1652781656470,
+      "contentHash": "057a5860b0dbd2832af437d8484dc177",
+      "sourceName": "contracts/interfaces/IFSDMinter.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "IFSDMinter"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/mocks/MockToken.sol": {
+      "lastModificationDate": 1652781656471,
+      "contentHash": "609878ac06d2d45e04b5247fe5fa8446",
+      "sourceName": "contracts/mocks/MockToken.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "MockToken"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/dao/FairSideDAO.sol": {
+      "lastModificationDate": 1654233883357,
+      "contentHash": "2a980ba78aaf450b9a9c686131d8eef8",
+      "sourceName": "contracts/dao/FairSideDAO.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/IFairSideDAO.sol",
+        "../interfaces/IERC20ConvictionScore.sol",
+        "../timelock/Timelock.sol",
+        "../dependencies/DSMath.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "FairSideDAO"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/timelock/Timelock.sol": {
+      "lastModificationDate": 1652781656472,
+      "contentHash": "986a47f3296062bdba9e454f5f4155ed",
+      "sourceName": "contracts/timelock/Timelock.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../dependencies/DSMath.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "Timelock"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/interfaces/IFundingPool.sol": {
+      "lastModificationDate": 1652781656471,
+      "contentHash": "39a1e524687785ee656885c54d8b0597",
+      "sourceName": "contracts/interfaces/IFundingPool.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "IFundingPool"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/Migrations.sol": {
+      "lastModificationDate": 1652781656469,
+      "contentHash": "50b3b1dc92806dc8f604fc8c5c65518f",
+      "sourceName": "contracts/Migrations.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.4.22 <0.9.0"
+      ],
+      "artifacts": [
+        "Migrations"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/mocks/MockConstants.sol": {
+      "lastModificationDate": 1652781656471,
+      "contentHash": "ea6dd7a455a084ad9fc445c3f579284c",
+      "sourceName": "contracts/mocks/MockConstants.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../shared/ProtocolConstants.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "MockConstants"
+      ]
+    },
+    "/Users/georgiosdelkos/Documents/GitHub/fairside-v1/contracts/shared/ProtocolConstants.sol": {
+      "lastModificationDate": 1652781656471,
+      "contentHash": "3cb29c12d1ce6fb4f6670df5b8e67daf",
+      "sourceName": "contracts/shared/ProtocolConstants.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "=0.6.8"
+      ],
+      "artifacts": [
+        "ProtocolConstants"
+      ]
+    }
+  }
+}

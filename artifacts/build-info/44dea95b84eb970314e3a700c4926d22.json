@@ -1,0 +1,210 @@
+{
+  "id": "44dea95b84eb970314e3a700c4926d22",
+  "_format": "hh-sol-build-info-1",
+  "solcVersion": "0.6.8",
+  "solcLongVersion": "0.6.8+commit.0bbfe453",
+  "input": {
+    "language": "Solidity",
+    "sources": {
+      "contracts/mocks/MockConstants.sol": {
+        "content": "// SPDX-License-Identifier: Unlicense\n\npragma solidity =0.6.8;\n\nimport \"../shared/ProtocolConstants.sol\";\n\ncontract MockConstants is ProtocolConstants {\n\n}"
+      },
+      "contracts/shared/ProtocolConstants.sol": {
+        "content": "// SPDX-License-Identifier: Unlicense\n\npragma solidity =0.6.8;\n\nabstract contract ProtocolConstants {\n    /* ========== CONSTANTS ========== */\n\n   \n}"
+      }
+    },
+    "settings": {
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ],
+          "": [
+            "ast"
+          ]
+        }
+      }
+    }
+  },
+  "output": {
+    "contracts": {
+      "contracts/mocks/MockConstants.sol": {
+        "MockConstants": {
+          "abi": [],
+          "evm": {
+            "bytecode": {
+              "linkReferences": {},
+              "object": "6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220da8c09a1bed3560cbcf733bbad024c374d94d676f11bf8e3d1e4ac014370c73c64736f6c63430006080033",
+              "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH1 0xF JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x3F DUP1 PUSH1 0x1D PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN INVALID PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 0xDA DUP13 MULMOD LOG1 0xBE 0xD3 JUMP 0xC 0xBC 0xF7 CALLER 0xBB 0xAD MUL 0x4C CALLDATACOPY 0x4D SWAP5 0xD6 PUSH23 0xF11BF8E3D1E4AC014370C73C64736F6C63430006080033 ",
+              "sourceMap": "107:48:0:-:0;;;;5:9:-1;2:2;;;27:1;24;17:12;2:2;107:48:0;;;;;;;"
+            },
+            "deployedBytecode": {
+              "immutableReferences": {},
+              "linkReferences": {},
+              "object": "6080604052600080fdfea2646970667358221220da8c09a1bed3560cbcf733bbad024c374d94d676f11bf8e3d1e4ac014370c73c64736f6c63430006080033",
+              "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 0xDA DUP13 MULMOD LOG1 0xBE 0xD3 JUMP 0xC 0xBC 0xF7 CALLER 0xBB 0xAD MUL 0x4C CALLDATACOPY 0x4D SWAP5 0xD6 PUSH23 0xF11BF8E3D1E4AC014370C73C64736F6C63430006080033 ",
+              "sourceMap": "107:48:0:-:0;;;12:1:-1;9;2:12"
+            },
+            "methodIdentifiers": {}
+          },
+          "metadata": "{\"compiler\":{\"version\":\"0.6.8+commit.0bbfe453\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"contracts/mocks/MockConstants.sol\":\"MockConstants\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/mocks/MockConstants.sol\":{\"keccak256\":\"0x2a5ce07fd659c1d7b4395b1a6a5226beee584d7ee9b2519aace9941e6b0c35f0\",\"license\":\"Unlicense\",\"urls\":[\"bzz-raw://c9b6613bf97c514c6f31d961f0aae0756ba2e9140b9b04c4b5460ba294ca696f\",\"dweb:/ipfs/QmeXFWtFH3QrqJeD9oDQuDuhrb24VQvW2i4PYTKMU7pqzd\"]},\"contracts/shared/ProtocolConstants.sol\":{\"keccak256\":\"0x49a77cbd2f0b37a1f157bdafee2c9e9665e5c89188ba3b8652e15c16be4cafaa\",\"license\":\"Unlicense\",\"urls\":[\"bzz-raw://b81d66eb142f77ccbf4b1e3f993256b94b3ab77327d4b72342f70b45620951ed\",\"dweb:/ipfs/QmaqCbFbcEYdsfrZzifUjtZbiiQQtJj5awMe18L8VftWXP\"]}},\"version\":1}"
+        }
+      },
+      "contracts/shared/ProtocolConstants.sol": {
+        "ProtocolConstants": {
+          "abi": [],
+          "evm": {
+            "bytecode": {
+              "linkReferences": {},
+              "object": "",
+              "opcodes": "",
+              "sourceMap": ""
+            },
+            "deployedBytecode": {
+              "immutableReferences": {},
+              "linkReferences": {},
+              "object": "",
+              "opcodes": "",
+              "sourceMap": ""
+            },
+            "methodIdentifiers": {}
+          },
+          "metadata": "{\"compiler\":{\"version\":\"0.6.8+commit.0bbfe453\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"contracts/shared/ProtocolConstants.sol\":\"ProtocolConstants\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/shared/ProtocolConstants.sol\":{\"keccak256\":\"0x49a77cbd2f0b37a1f157bdafee2c9e9665e5c89188ba3b8652e15c16be4cafaa\",\"license\":\"Unlicense\",\"urls\":[\"bzz-raw://b81d66eb142f77ccbf4b1e3f993256b94b3ab77327d4b72342f70b45620951ed\",\"dweb:/ipfs/QmaqCbFbcEYdsfrZzifUjtZbiiQQtJj5awMe18L8VftWXP\"]}},\"version\":1}"
+        }
+      }
+    },
+    "sources": {
+      "contracts/mocks/MockConstants.sol": {
+        "ast": {
+          "absolutePath": "contracts/mocks/MockConstants.sol",
+          "exportedSymbols": {
+            "MockConstants": [
+              5
+            ]
+          },
+          "id": 6,
+          "license": "Unlicense",
+          "nodeType": "SourceUnit",
+          "nodes": [
+            {
+              "id": 1,
+              "literals": [
+                "solidity",
+                "=",
+                "0.6",
+                ".8"
+              ],
+              "nodeType": "PragmaDirective",
+              "src": "39:23:0"
+            },
+            {
+              "absolutePath": "contracts/shared/ProtocolConstants.sol",
+              "file": "../shared/ProtocolConstants.sol",
+              "id": 2,
+              "nodeType": "ImportDirective",
+              "scope": 6,
+              "sourceUnit": 9,
+              "src": "64:41:0",
+              "symbolAliases": [],
+              "unitAlias": ""
+            },
+            {
+              "abstract": false,
+              "baseContracts": [
+                {
+                  "arguments": null,
+                  "baseName": {
+                    "contractScope": null,
+                    "id": 3,
+                    "name": "ProtocolConstants",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 8,
+                    "src": "133:17:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_ProtocolConstants_$8",
+                      "typeString": "contract ProtocolConstants"
+                    }
+                  },
+                  "id": 4,
+                  "nodeType": "InheritanceSpecifier",
+                  "src": "133:17:0"
+                }
+              ],
+              "contractDependencies": [
+                8
+              ],
+              "contractKind": "contract",
+              "documentation": null,
+              "fullyImplemented": true,
+              "id": 5,
+              "linearizedBaseContracts": [
+                5,
+                8
+              ],
+              "name": "MockConstants",
+              "nodeType": "ContractDefinition",
+              "nodes": [],
+              "scope": 6,
+              "src": "107:48:0"
+            }
+          ],
+          "src": "39:116:0"
+        },
+        "id": 0
+      },
+      "contracts/shared/ProtocolConstants.sol": {
+        "ast": {
+          "absolutePath": "contracts/shared/ProtocolConstants.sol",
+          "exportedSymbols": {
+            "ProtocolConstants": [
+              8
+            ]
+          },
+          "id": 9,
+          "license": "Unlicense",
+          "nodeType": "SourceUnit",
+          "nodes": [
+            {
+              "id": 7,
+              "literals": [
+                "solidity",
+                "=",
+                "0.6",
+                ".8"
+              ],
+              "nodeType": "PragmaDirective",
+              "src": "39:23:1"
+            },
+            {
+              "abstract": true,
+              "baseContracts": [],
+              "contractDependencies": [],
+              "contractKind": "contract",
+              "documentation": null,
+              "fullyImplemented": true,
+              "id": 8,
+              "linearizedBaseContracts": [
+                8
+              ],
+              "name": "ProtocolConstants",
+              "nodeType": "ContractDefinition",
+              "nodes": [],
+              "scope": 9,
+              "src": "64:86:1"
+            }
+          ],
+          "src": "39:111:1"
+        },
+        "id": 1
+      }
+    }
+  }
+}
