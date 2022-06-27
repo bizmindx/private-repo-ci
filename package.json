@@ -3,8 +3,10 @@
   "scripts": {
     "compile": "npx hardhat compile",
     "test": "npx hardhat test",
+    "deploy": "npx hardhat run scripts/fe_deploy.js",
+    "interact": "npx hardhat run scripts/SDeploy.js",
     "coverage": "npx hardhat coverage",
-    "lint:contracts": "solhint './contracts/**/*.sol'"
+    "lint:contracts": "./node_modules/solhint/solhint.js './contracts/**/*.sol'"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.5",
