@@ -30,7 +30,7 @@ jobs:
         run: yarn lint:contracts
         continue-on-error: true
 
-      - name: Compile & Build Contract
+      - name: Compile & Build Contracts
         run: yarn compile
 
       - name: Deploy Contracts
