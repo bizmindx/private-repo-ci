@@ -1,11 +1,8 @@
 const { ZERO_ADDRESS } = require("@openzeppelin/test-helpers/src/constants");
 const { expect } = require("chai");
-const { ethers, network } = require("hardhat");
-const { signEIP712Message } = require("../helpers/eip712sign");
-const { createPoolNewAddress, SIGNER_ACCOUNT, advanceBlocks } = require("../helpers/base");
+const { ethers } = require("hardhat");
+const { createPoolNewAddress, SIGNER_ACCOUNT } = require("../helpers/base");
 
-const { web3 } = require("@openzeppelin/test-helpers/src/setup");
-const { default: axios } = require("axios");
 
 
 describe("FSDToken", () => {

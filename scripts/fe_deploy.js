@@ -6,7 +6,7 @@
 const hre = require("hardhat")
 const { web3 } = require("@openzeppelin/test-helpers/src/setup")
 const { ethers } = require("hardhat")
-const { signEIP712Message } = require("../test/eip712sign");
+const { signEIP712Message } = require("../test/helpers/eip712sign");
 
 
 const SIGNER_ACCOUNT = {
@@ -28,13 +28,13 @@ async function main() {
   console.log("Signer account : ", SIGNER_ACCOUNT.publicKey)
 
   let MockToken = await ethers.getContractFactory("MockToken")
-  let xDai =   await MockToken.deploy("xDAITEST", "xDAITEST", 18)
+  let xDai = await MockToken.deploy("xDAITEST", "xDAITEST", 18)
   await xDai.deployed()
   await xDai.mint(owner.address, ethers.utils.parseEther("100000000000"))
   console.log("Added xDAI test and in address : ", xDai.address)
 
 
-  
+
 
 
   // Deploy pools
@@ -180,7 +180,7 @@ async function main() {
 
   //       await fsd.phaseAdvance();
   //       await minter
-        
+
   //       .mintCWL(sigVc1, 1000000, { value: ethers.utils.parseEther("10") });
   //       await fsd.phaseAdvance();
   //       await minter.mint(1, {

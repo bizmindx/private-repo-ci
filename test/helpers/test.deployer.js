@@ -1,8 +1,6 @@
 
-const { default: axios } = require("axios");
 const { ZERO_ADDRESS } = require("@openzeppelin/test-helpers/src/constants");
-const { ethers, network } = require("hardhat");
-const { signEIP712Message } = require("./eip712sign");
+const { ethers } = require("hardhat");
 const { web3 } = require("@openzeppelin/test-helpers/src/setup");
 
 const SIGNER_ACCOUNT = {
@@ -44,7 +42,6 @@ const fsdDeployerHelper = (async () => {
         cwAcc3,
         membershipBuyer1,
     ] = await ethers.getSigners(16);
-
     fundingPool = createPoolNewAddress();
     premiumsPool = createPoolNewAddress();
 

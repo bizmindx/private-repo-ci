@@ -3,6 +3,7 @@
   "scripts": {
     "compile": "npx hardhat compile",
     "test": "npx hardhat test",
+    "audit-ci": "audit-ci --config audit-ci.json",
     "deploy": "npx hardhat run scripts/fe_deploy.js",
     "interact": "npx hardhat run scripts/SDeploy.js",
     "coverage": "npx hardhat coverage",
