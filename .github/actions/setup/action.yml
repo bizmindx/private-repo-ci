@@ -9,4 +9,5 @@ runs:
         cache: yarn
 
     - name: Install dependencies
+      shell: bash
       run: yarn --prefer-offline
