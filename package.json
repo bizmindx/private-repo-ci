@@ -6,7 +6,10 @@
     "deploy": "npx hardhat run scripts/fe_deploy.js",
     "interact": "npx hardhat run scripts/SDeploy.js",
     "coverage": "npx hardhat coverage",
-    "lint:contracts": "./node_modules/solhint/solhint.js './contracts/**/*.sol'"
+    "lint:contracts": "npx solhint 'contracts/**/*.sol'",
+    "test:fsdToken": "npx hardhat test ./test/fsdToken.test.js",
+    "test:fsdMinter": "npx hardhat test ./test/fsdMinter.test.js",
+    "test:fsdNetwork": "npx hardhat test ./test/network/fsdNetwork.test.js"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.5",

@@ -6,7 +6,7 @@
 #                 5. Run all tests
 #                 6. slither integration
 
-name: Contract Deployment
+name: Contract Testing
 
 on: [push]
 
@@ -14,6 +14,7 @@ jobs:
   contract-ci-checks:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Code
       - uses: actions/checkout@v3
 
       - name: Use Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
@@ -25,18 +26,11 @@ jobs:
       - name: Install Node Dependencies
         run: yarn install
 
-      # - name: Lint Contracts
-      #   run: yarn lint:contracts
-      #   continue-on-error: true
+      - name: Run Test
+        run: yarn test
 
-      - name: Compile & Build Contracts
-        run: yarn compile
-
-      - name: Deploy Contracts Locally
-        run: yarn deploy
-
-      - name: Interact With Contracts
-        run: yarn interact
+      - name: Audit for vulnerabilities
+        run: yarn audit-ci
 
       - name: Run Coverage Checks
         run: yarn coverage
