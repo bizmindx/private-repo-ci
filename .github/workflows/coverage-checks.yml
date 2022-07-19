@@ -6,7 +6,7 @@
 #                 5. Run all tests
 #                 6. slither integration
 
-name: Contract Testing
+# name: Contract Testing
 
 on: [push]
 
@@ -23,14 +23,12 @@ jobs:
           cache: "yarn"
 
       - name: Install Node Dependencies
-        run: yarn install
+        run: yarn --prefer-offline
 
       # - name: Run Test
       #   run: yarn test
-
-      - name: Audit for vulnerabilities
-        run: yarn audit-ci
-
+      # - name: Audit for vulnerabilities
+      #   run: yarn audit-ci
       - name: Run Coverage Checks
         run: yarn coverage
-        continue-on-error: true
+        # continue-on-error: true

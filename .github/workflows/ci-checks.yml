@@ -6,7 +6,7 @@
 #                 5. Run all tests
 #                 6. slither integration
 
-name: Contract Deployment
+# name: Contract Deployment
 
 on: [push]
 
@@ -27,7 +27,7 @@ jobs:
           cache: "yarn"
 
       - name: Install Node Dependencies
-        run: yarn install
+        run: yarn --prefer-offline
 
       # - name: Lint Contracts
       #   run: yarn lint:contracts

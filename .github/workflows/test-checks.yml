@@ -6,15 +6,14 @@
 #                 5. Run all tests
 #                 6. slither integration
 
-name: Contract Testing
+name: Contract Uint Testing
 
 on: [push]
 
 jobs:
-  contract-test-checks:
+  contract-unit-tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
       - uses: actions/checkout@v3
 
       - name: Use Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
@@ -24,14 +23,11 @@ jobs:
           cache: "yarn"
 
       - name: Install Node Dependencies
-        run: yarn install
+        run: yarn --prefer-offline
 
       - name: Run Test
         run: yarn test
 
-      - name: Audit for vulnerabilities
-        run: yarn audit-ci
-
-      - name: Run Coverage Checks
-        run: yarn coverage
-        continue-on-error: true
+      # - name: Run Coverage Checks
+      #   run: yarn coverage
+      #   continue-on-error: true
