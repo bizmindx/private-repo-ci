@@ -41,10 +41,10 @@ module.exports = {
       mining: {
         auto: true
       },
-      forking: {
-        url: "https://eth-mainnet.alchemyapi.io/v2/_BQD0Esx8ZAKb9KAB-0yX40UzodFYCmn",
-        // blockNumber: 14622817,
-      },
+      // forking: {
+      //   url: "https://eth-mainnet.alchemyapi.io/v2/_BQD0Esx8ZAKb9KAB-0yX40UzodFYCmn",
+      //   // blockNumber: 14622817,
+      // },
     },
   },
   gasReporter: {
