@@ -1,7 +1,7 @@
 const { ZERO_ADDRESS } = require("@openzeppelin/test-helpers/src/constants");
 const { expect } = require("chai");
 const { ethers, network } = require("hardhat");
-const { signEIP712Message } = require("./eip712sign");
+const { signEIP712Message } = require("./helpers/eip712sign");
 const { web3 } = require("@openzeppelin/test-helpers/src/setup");
 const { default: axios } = require("axios");
 
