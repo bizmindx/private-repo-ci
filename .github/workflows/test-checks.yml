@@ -11,7 +11,7 @@ name: Contract Testing
 on: [push]
 
 jobs:
-  contract-ci-checks:
+  contract-test-checks:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
