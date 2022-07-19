@@ -6,33 +6,21 @@
 #                 5. Run all tests
 #                 6. slither integration
 
-# name: Contract Deployment
+name: Contract Deployment
 
 on: [push]
 
-# concurrency:
-#   group: checks-${{ github.ref }}
-#   cancel-in-progress: true
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   contract-ci-checks:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
-      - name: Use Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "yarn"
-
-      - name: Install Node Dependencies
-        run: yarn --prefer-offline
-
-      # - name: Lint Contracts
-      #   run: yarn lint:contracts
-      #   continue-on-error: true
-
+      - name: Set up environment
+        uses: ./.github/actions/setup
       - name: Compile & Build Contracts
         run: yarn compile
 
