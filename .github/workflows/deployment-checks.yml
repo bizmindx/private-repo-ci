@@ -10,9 +10,9 @@ name: Contract Deployment
 
 on: [push]
 
-# concurrency:
-#   group: checks-${{ github.ref }}
-#   cancel-in-progress: true
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   contract-ci-checks:
