@@ -10,6 +10,10 @@ name: Contract Deployment
 
 on: [push]
 
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   contract-ci-checks:
     runs-on: ubuntu-latest
@@ -38,6 +42,6 @@ jobs:
       - name: Interact With Contracts
         run: yarn interact
 
-      - name: Run Coverage Checks
-        run: yarn coverage
-        continue-on-error: true
+      # - name: Run Coverage Checks
+      #   run: yarn coverage
+      #   continue-on-error: true
