@@ -3,7 +3,7 @@
  * ABDK Math Quad Smart Contract Library.  Copyright © 2019 by ABDK Consulting.
  * Author: Mikhail Vladimirov <mikhail.vladimirov@gmail.com>
  */
-pragma solidity ^0.5.0 || ^0.6.0 || ^0.7.0;
+pragma solidity 0.8.3;
 
 /**
  * Smart contract library of mathematical functions operating with IEEE 754
@@ -44,12 +44,13 @@ library ABDKMathQuad {
    * @return quadruple precision number
    */
   function fromInt (int256 x) internal pure returns (bytes16) {
+  unchecked {
     if (x == 0) return bytes16 (0);
     else {
       // We rely on overflow behavior here
       uint256 result = uint256 (x > 0 ? x : -x);
 
-      uint256 msb = msb (result);
+      uint256 msb = mostSignificantBit (result);
       if (msb < 112) result <<= 112 - msb;
       else if (msb > 112) result >>= msb - 112;
 
@@ -58,6 +59,7 @@ library ABDKMathQuad {
 
       return bytes16 (uint128 (result));
     }
+  }
   }
 
   /**
@@ -68,13 +70,14 @@ library ABDKMathQuad {
    * @return signed 256-bit integer number
    */
   function toInt (bytes16 x) internal pure returns (int256) {
+  unchecked {
     uint256 exponent = uint128 (x) >> 112 & 0x7FFF;
 
     require (exponent <= 16638); // Overflow
     if (exponent < 16383) return 0; // Underflow
 
     uint256 result = uint256 (uint128 (x)) & 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFF |
-      0x10000000000000000000000000000;
+    0x10000000000000000000000000000;
 
     if (exponent < 16495) result >>= 16495 - exponent;
     else if (exponent > 16495) result <<= exponent - 16495;
@@ -87,6 +90,7 @@ library ABDKMathQuad {
       return int256 (result);
     }
   }
+  }
 
   /**
    * Convert unsigned 256-bit integer number into quadruple precision number.
@@ -95,11 +99,12 @@ library ABDKMathQuad {
    * @return quadruple precision number
    */
   function fromUInt (uint256 x) internal pure returns (bytes16) {
+  unchecked {
     if (x == 0) return bytes16 (0);
     else {
       uint256 result = x;
 
-      uint256 msb = msb (result);
+      uint256 msb = mostSignificantBit (result);
       if (msb < 112) result <<= 112 - msb;
       else if (msb > 112) result >>= msb - 112;
 
@@ -107,6 +112,7 @@ library ABDKMathQuad {
 
       return bytes16 (uint128 (result));
     }
+  }
   }
 
   /**
@@ -119,6 +125,7 @@ library ABDKMathQuad {
    * @return unsigned 256-bit integer number
    */
   function toUInt (bytes16 x) internal pure returns (uint256) {
+  unchecked {
     uint256 exponent = uint128 (x) >> 112 & 0x7FFF;
 
     if (exponent < 16383) return 0; // Underflow
@@ -127,12 +134,13 @@ library ABDKMathQuad {
 
     require (exponent <= 16638); // Overflow
     uint256 result = uint256 (uint128 (x)) & 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFF |
-      0x10000000000000000000000000000;
+    0x10000000000000000000000000000;
 
     if (exponent < 16495) result >>= 16495 - exponent;
     else if (exponent > 16495) result <<= exponent - 16495;
 
     return result;
+  }
   }
 
   /**
@@ -143,12 +151,13 @@ library ABDKMathQuad {
    * @return quadruple precision number
    */
   function from128x128 (int256 x) internal pure returns (bytes16) {
+  unchecked {
     if (x == 0) return bytes16 (0);
     else {
       // We rely on overflow behavior here
       uint256 result = uint256 (x > 0 ? x : -x);
 
-      uint256 msb = msb (result);
+      uint256 msb = mostSignificantBit (result);
       if (msb < 112) result <<= 112 - msb;
       else if (msb > 112) result >>= msb - 112;
 
@@ -157,6 +166,7 @@ library ABDKMathQuad {
 
       return bytes16 (uint128 (result));
     }
+  }
   }
 
   /**
@@ -167,13 +177,14 @@ library ABDKMathQuad {
    * @return signed 128.128 bit fixed point number
    */
   function to128x128 (bytes16 x) internal pure returns (int256) {
+  unchecked {
     uint256 exponent = uint128 (x) >> 112 & 0x7FFF;
 
     require (exponent <= 16510); // Overflow
     if (exponent < 16255) return 0; // Underflow
 
     uint256 result = uint256 (uint128 (x)) & 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFF |
-      0x10000000000000000000000000000;
+    0x10000000000000000000000000000;
 
     if (exponent < 16367) result >>= 16367 - exponent;
     else if (exponent > 16367) result <<= exponent - 16367;
@@ -186,6 +197,7 @@ library ABDKMathQuad {
       return int256 (result);
     }
   }
+  }
 
   /**
    * Convert signed 64.64 bit fixed point number into quadruple precision
@@ -195,12 +207,13 @@ library ABDKMathQuad {
    * @return quadruple precision number
    */
   function from64x64 (int128 x) internal pure returns (bytes16) {
+  unchecked {
     if (x == 0) return bytes16 (0);
     else {
       // We rely on overflow behavior here
       uint256 result = uint128 (x > 0 ? x : -x);
 
-      uint256 msb = msb (result);
+      uint256 msb = mostSignificantBit (result);
       if (msb < 112) result <<= 112 - msb;
       else if (msb > 112) result >>= msb - 112;
 
@@ -209,6 +222,7 @@ library ABDKMathQuad {
 
       return bytes16 (uint128 (result));
     }
+  }
   }
 
   /**
@@ -219,24 +233,26 @@ library ABDKMathQuad {
    * @return signed 64.64 bit fixed point number
    */
   function to64x64 (bytes16 x) internal pure returns (int128) {
+  unchecked {
     uint256 exponent = uint128 (x) >> 112 & 0x7FFF;
 
     require (exponent <= 16446); // Overflow
     if (exponent < 16319) return 0; // Underflow
 
     uint256 result = uint256 (uint128 (x)) & 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFF |
-      0x10000000000000000000000000000;
+    0x10000000000000000000000000000;
 
     if (exponent < 16431) result >>= 16431 - exponent;
     else if (exponent > 16431) result <<= exponent - 16431;
 
     if (uint128 (x) >= 0x80000000000000000000000000000000) { // Negative
       require (result <= 0x80000000000000000000000000000000);
-      return -int128 (result); // We rely on overflow behavior here
+      return -int128 (int256 (result)); // We rely on overflow behavior here
     } else {
       require (result <= 0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF);
-      return int128 (result);
+      return int128 (int256 (result));
     }
+  }
   }
 
   /**
@@ -246,6 +262,7 @@ library ABDKMathQuad {
    * @return quadruple precision number
    */
   function fromOctuple (bytes32 x) internal pure returns (bytes16) {
+  unchecked {
     bool negative = x & 0x8000000000000000000000000000000000000000000000000000000000000000 > 0;
 
     uint256 exponent = uint256 (x) >> 236 & 0x7FFFF;
@@ -273,6 +290,7 @@ library ABDKMathQuad {
 
     return bytes16 (result);
   }
+  }
 
   /**
    * Convert quadruple precision number into octuple precision number.
@@ -281,6 +299,7 @@ library ABDKMathQuad {
    * @return octuple precision number
    */
   function toOctuple (bytes16 x) internal pure returns (bytes32) {
+  unchecked {
     uint256 exponent = uint128 (x) >> 112 & 0x7FFF;
 
     uint256 result = uint128 (x) & 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
@@ -288,7 +307,7 @@ library ABDKMathQuad {
     if (exponent == 0x7FFF) exponent = 0x7FFFF; // Infinity or NaN
     else if (exponent == 0) {
       if (result > 0) {
-        uint256 msb = msb (result);
+        uint256 msb = mostSignificantBit (result);
         result = result << 236 - msb & 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
         exponent = 245649 + msb;
       }
@@ -303,6 +322,7 @@ library ABDKMathQuad {
 
     return bytes32 (result);
   }
+  }
 
   /**
    * Convert double precision number into quadruple precision number.
@@ -311,6 +331,7 @@ library ABDKMathQuad {
    * @return quadruple precision number
    */
   function fromDouble (bytes8 x) internal pure returns (bytes16) {
+  unchecked {
     uint256 exponent = uint64 (x) >> 52 & 0x7FF;
 
     uint256 result = uint64 (x) & 0xFFFFFFFFFFFFF;
@@ -318,7 +339,7 @@ library ABDKMathQuad {
     if (exponent == 0x7FF) exponent = 0x7FFF; // Infinity or NaN
     else if (exponent == 0) {
       if (result > 0) {
-        uint256 msb = msb (result);
+        uint256 msb = mostSignificantBit (result);
         result = result << 112 - msb & 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
         exponent = 15309 + msb;
       }
@@ -333,6 +354,7 @@ library ABDKMathQuad {
 
     return bytes16 (uint128 (result));
   }
+  }
 
   /**
    * Convert quadruple precision number into double precision number.
@@ -341,6 +363,7 @@ library ABDKMathQuad {
    * @return double precision number
    */
   function toDouble (bytes16 x) internal pure returns (bytes8) {
+  unchecked {
     bool negative = uint128 (x) >= 0x80000000000000000000000000000000;
 
     uint256 exponent = uint128 (x) >> 112 & 0x7FFF;
@@ -349,18 +372,18 @@ library ABDKMathQuad {
     if (exponent == 0x7FFF) {
       if (significand > 0) return 0x7FF8000000000000; // NaN
       else return negative ?
-          bytes8 (0xFFF0000000000000) : // -Infinity
-          bytes8 (0x7FF0000000000000); // Infinity
+      bytes8 (0xFFF0000000000000) : // -Infinity
+      bytes8 (0x7FF0000000000000); // Infinity
     }
 
     if (exponent > 17406)
       return negative ?
-          bytes8 (0xFFF0000000000000) : // -Infinity
-          bytes8 (0x7FF0000000000000); // Infinity
+      bytes8 (0xFFF0000000000000) : // -Infinity
+      bytes8 (0x7FF0000000000000); // Infinity
     else if (exponent < 15309)
       return negative ?
-          bytes8 (0x8000000000000000) : // -0
-          bytes8 (0x0000000000000000); // 0
+      bytes8 (0x8000000000000000) : // -0
+      bytes8 (0x0000000000000000); // 0
     else if (exponent < 15361) {
       significand = (significand | 0x10000000000000000000000000000) >> 15421 - exponent;
       exponent = 0;
@@ -374,6 +397,7 @@ library ABDKMathQuad {
 
     return bytes8 (result);
   }
+  }
 
   /**
    * Test whether given quadruple precision number is NaN.
@@ -382,8 +406,10 @@ library ABDKMathQuad {
    * @return true if x is NaN, false otherwise
    */
   function isNaN (bytes16 x) internal pure returns (bool) {
+  unchecked {
     return uint128 (x) & 0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF >
-      0x7FFF0000000000000000000000000000;
+    0x7FFF0000000000000000000000000000;
+  }
   }
 
   /**
@@ -394,18 +420,21 @@ library ABDKMathQuad {
    * @return true if x is positive or negative infinity, false otherwise
    */
   function isInfinity (bytes16 x) internal pure returns (bool) {
+  unchecked {
     return uint128 (x) & 0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF ==
-      0x7FFF0000000000000000000000000000;
+    0x7FFF0000000000000000000000000000;
+  }
   }
 
   /**
    * Calculate sign of x, i.e. -1 if x is negative, 0 if x if zero, and 1 if x
-   * is positive.  Note that sign (-0) is zero.  Revert if x is NaN. 
+   * is positive.  Note that sign (-0) is zero.  Revert if x is NaN.
    *
    * @param x quadruple precision number
    * @return sign of x
    */
   function sign (bytes16 x) internal pure returns (int8) {
+  unchecked {
     uint128 absoluteX = uint128 (x) & 0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
 
     require (absoluteX <= 0x7FFF0000000000000000000000000000); // Not NaN
@@ -414,16 +443,18 @@ library ABDKMathQuad {
     else if (uint128 (x) >= 0x80000000000000000000000000000000) return -1;
     else return 1;
   }
+  }
 
   /**
    * Calculate sign (x - y).  Revert if either argument is NaN, or both
-   * arguments are infinities of the same sign. 
+   * arguments are infinities of the same sign.
    *
    * @param x quadruple precision number
    * @param y quadruple precision number
    * @return sign (x - y)
    */
   function cmp (bytes16 x, bytes16 y) internal pure returns (int8) {
+  unchecked {
     uint128 absoluteX = uint128 (x) & 0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
 
     require (absoluteX <= 0x7FFF0000000000000000000000000000); // Not NaN
@@ -442,27 +473,30 @@ library ABDKMathQuad {
 
       if (negativeX) {
         if (negativeY) return absoluteX > absoluteY ? -1 : int8 (1);
-        else return -1; 
+        else return -1;
       } else {
         if (negativeY) return 1;
         else return absoluteX > absoluteY ? int8 (1) : -1;
       }
     }
   }
+  }
 
   /**
    * Test whether x equals y.  NaN, infinity, and -infinity are not equal to
-   * anything. 
+   * anything.
    *
    * @param x quadruple precision number
    * @param y quadruple precision number
    * @return true if x equals to y, false otherwise
    */
   function eq (bytes16 x, bytes16 y) internal pure returns (bool) {
+  unchecked {
     if (x == y) {
       return uint128 (x) & 0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF <
-        0x7FFF0000000000000000000000000000;
+      0x7FFF0000000000000000000000000000;
     } else return false;
+  }
   }
 
   /**
@@ -480,14 +514,15 @@ library ABDKMathQuad {
    * @return quadruple precision number
    */
   function add (bytes16 x, bytes16 y) internal pure returns (bytes16) {
+  unchecked {
     uint256 xExponent = uint128 (x) >> 112 & 0x7FFF;
     uint256 yExponent = uint128 (y) >> 112 & 0x7FFF;
 
     if (xExponent == 0x7FFF) {
-      if (yExponent == 0x7FFF) { 
+      if (yExponent == 0x7FFF) {
         if (x == y) return x;
         else return NaN;
-      } else return x; 
+      } else return x;
     } else if (yExponent == 0x7FFF) return y;
     else {
       bool xSign = uint128 (x) >= 0x80000000000000000000000000000000;
@@ -504,7 +539,7 @@ library ABDKMathQuad {
       else if (ySignifier == 0) return x == NEGATIVE_ZERO ? POSITIVE_ZERO : x;
       else {
         int256 delta = int256 (xExponent) - int256 (yExponent);
-  
+
         if (xSign == ySign) {
           if (delta > 112) return x;
           else if (delta > 0) ySignifier >>= uint256 (delta);
@@ -513,24 +548,24 @@ library ABDKMathQuad {
             xSignifier >>= uint256 (-delta);
             xExponent = yExponent;
           }
-  
+
           xSignifier += ySignifier;
-  
+
           if (xSignifier >= 0x20000000000000000000000000000) {
             xSignifier >>= 1;
             xExponent += 1;
           }
-  
+
           if (xExponent == 0x7FFF)
             return xSign ? NEGATIVE_INFINITY : POSITIVE_INFINITY;
           else {
             if (xSignifier < 0x10000000000000000000000000000) xExponent = 0;
             else xSignifier &= 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
-  
+
             return bytes16 (uint128 (
                 (xSign ? 0x80000000000000000000000000000000 : 0) |
                 (xExponent << 112) |
-                xSignifier)); 
+                xSignifier));
           }
         } else {
           if (delta > 0) {
@@ -555,7 +590,7 @@ library ABDKMathQuad {
           if (xSignifier == 0)
             return POSITIVE_ZERO;
 
-          uint256 msb = msb (xSignifier);
+          uint256 msb = mostSignificantBit (xSignifier);
 
           if (msb == 113) {
             xSignifier = xSignifier >> 1 & 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
@@ -581,6 +616,7 @@ library ABDKMathQuad {
       }
     }
   }
+  }
 
   /**
    * Calculate x - y.  Special values behave in the following way:
@@ -597,7 +633,9 @@ library ABDKMathQuad {
    * @return quadruple precision number
    */
   function sub (bytes16 x, bytes16 y) internal pure returns (bytes16) {
+  unchecked {
     return add (x, y ^ 0x80000000000000000000000000000000);
+  }
   }
 
   /**
@@ -620,6 +658,7 @@ library ABDKMathQuad {
    * @return quadruple precision number
    */
   function mul (bytes16 x, bytes16 y) internal pure returns (bytes16) {
+  unchecked {
     uint256 xExponent = uint128 (x) >> 112 & 0x7FFF;
     uint256 yExponent = uint128 (y) >> 112 & 0x7FFF;
 
@@ -633,8 +672,8 @@ library ABDKMathQuad {
         else return x ^ y & 0x80000000000000000000000000000000;
       }
     } else if (yExponent == 0x7FFF) {
-        if (x & 0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF == 0) return NaN;
-        else return y ^ x & 0x80000000000000000000000000000000;
+      if (x & 0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF == 0) return NaN;
+      else return y ^ x & 0x80000000000000000000000000000000;
     } else {
       uint256 xSignifier = uint128 (x) & 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
       if (xExponent == 0) xExponent = 1;
@@ -647,14 +686,14 @@ library ABDKMathQuad {
       xSignifier *= ySignifier;
       if (xSignifier == 0)
         return (x ^ y) & 0x80000000000000000000000000000000 > 0 ?
-            NEGATIVE_ZERO : POSITIVE_ZERO;
+        NEGATIVE_ZERO : POSITIVE_ZERO;
 
       xExponent += yExponent;
 
       uint256 msb =
-        xSignifier >= 0x200000000000000000000000000000000000000000000000000000000 ? 225 :
-        xSignifier >= 0x100000000000000000000000000000000000000000000000000000000 ? 224 :
-        msb (xSignifier);
+      xSignifier >= 0x200000000000000000000000000000000000000000000000000000000 ? 225 :
+      xSignifier >= 0x100000000000000000000000000000000000000000000000000000000 ? 224 :
+      mostSignificantBit (xSignifier);
 
       if (xExponent + msb < 16496) { // Underflow
         xExponent = 0;
@@ -680,8 +719,9 @@ library ABDKMathQuad {
       }
 
       return bytes16 (uint128 (uint128 ((x ^ y) & 0x80000000000000000000000000000000) |
-          xExponent << 112 | xSignifier));
+      xExponent << 112 | xSignifier));
     }
+  }
   }
 
   /**
@@ -697,7 +737,7 @@ library ABDKMathQuad {
    * x / -Infinity = -0 for any finite non-negative x.
    * x / Infinity = -0 for any finite non-negative x including -0.
    * x / -Infinity = 0 for any finite non-negative x including -0.
-   * 
+   *
    * Infinity / Infinity = NaN.
    * Infinity / -Infinity = -NaN.
    * -Infinity / Infinity = -NaN.
@@ -719,6 +759,7 @@ library ABDKMathQuad {
    * @return quadruple precision number
    */
   function div (bytes16 x, bytes16 y) internal pure returns (bytes16) {
+  unchecked {
     uint256 xExponent = uint128 (x) >> 112 & 0x7FFF;
     uint256 yExponent = uint128 (y) >> 112 & 0x7FFF;
 
@@ -739,7 +780,7 @@ library ABDKMathQuad {
       uint256 xSignifier = uint128 (x) & 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
       if (xExponent == 0) {
         if (xSignifier != 0) {
-          uint shift = 226 - msb (xSignifier);
+          uint shift = 226 - mostSignificantBit (xSignifier);
 
           xSignifier <<= shift;
 
@@ -754,14 +795,14 @@ library ABDKMathQuad {
       xSignifier = xSignifier / ySignifier;
       if (xSignifier == 0)
         return (x ^ y) & 0x80000000000000000000000000000000 > 0 ?
-            NEGATIVE_ZERO : POSITIVE_ZERO;
+        NEGATIVE_ZERO : POSITIVE_ZERO;
 
       assert (xSignifier >= 0x1000000000000000000000000000);
 
       uint256 msb =
-        xSignifier >= 0x80000000000000000000000000000 ? msb (xSignifier) :
-        xSignifier >= 0x40000000000000000000000000000 ? 114 :
-        xSignifier >= 0x20000000000000000000000000000 ? 113 : 112;
+      xSignifier >= 0x80000000000000000000000000000 ? mostSignificantBit (xSignifier) :
+      xSignifier >= 0x40000000000000000000000000000 ? 114 :
+      xSignifier >= 0x20000000000000000000000000000 ? 113 : 112;
 
       if (xExponent + msb > yExponent + 16497) { // Overflow
         xExponent = 0x7FFF;
@@ -786,8 +827,9 @@ library ABDKMathQuad {
       }
 
       return bytes16 (uint128 (uint128 ((x ^ y) & 0x80000000000000000000000000000000) |
-          xExponent << 112 | xSignifier));
+      xExponent << 112 | xSignifier));
     }
+  }
   }
 
   /**
@@ -797,7 +839,9 @@ library ABDKMathQuad {
    * @return quadruple precision number
    */
   function neg (bytes16 x) internal pure returns (bytes16) {
+  unchecked {
     return x ^ 0x80000000000000000000000000000000;
+  }
   }
 
   /**
@@ -807,7 +851,9 @@ library ABDKMathQuad {
    * @return quadruple precision number
    */
   function abs (bytes16 x) internal pure returns (bytes16) {
+  unchecked {
     return x & 0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
+  }
   }
 
   /**
@@ -817,6 +863,7 @@ library ABDKMathQuad {
    * @return quadruple precision number
    */
   function sqrt (bytes16 x) internal pure returns (bytes16) {
+  unchecked {
     if (uint128 (x) >  0x80000000000000000000000000000000) return NaN;
     else {
       uint256 xExponent = uint128 (x) >> 112 & 0x7FFF;
@@ -835,7 +882,7 @@ library ABDKMathQuad {
           if (xSignifier >= 0x10000000000000000000000000000)
             xSignifier <<= 113;
           else {
-            uint256 msb = msb (xSignifier);
+            uint256 msb = mostSignificantBit (xSignifier);
             uint256 shift = (226 - msb) & 0xFE;
             xSignifier <<= shift;
             xExponent -= shift - 112 >> 1;
@@ -844,7 +891,7 @@ library ABDKMathQuad {
           if (xSignifier >= 0x10000000000000000000000000000)
             xSignifier <<= 112;
           else {
-            uint256 msb = msb (xSignifier);
+            uint256 msb = mostSignificantBit (xSignifier);
             uint256 shift = (225 - msb) & 0xFE;
             xSignifier <<= shift;
             xExponent -= shift - 112 >> 1;
@@ -866,6 +913,7 @@ library ABDKMathQuad {
       }
     }
   }
+  }
 
   /**
    * Calculate binary logarithm of x.  Return NaN on negative x excluding -0.
@@ -874,8 +922,9 @@ library ABDKMathQuad {
    * @return quadruple precision number
    */
   function log_2 (bytes16 x) internal pure returns (bytes16) {
+  unchecked {
     if (uint128 (x) > 0x80000000000000000000000000000000) return NaN;
-    else if (x == 0x3FFF0000000000000000000000000000) return POSITIVE_ZERO; 
+    else if (x == 0x3FFF0000000000000000000000000000) return POSITIVE_ZERO;
     else {
       uint256 xExponent = uint128 (x) >> 112 & 0x7FFF;
       if (xExponent == 0x7FFF) return x;
@@ -900,7 +949,7 @@ library ABDKMathQuad {
             resultSignifier = 0x3FFE - xExponent;
             xSignifier <<= 15;
           } else {
-            uint256 msb = msb (xSignifier);
+            uint256 msb = mostSignificantBit (xSignifier);
             resultSignifier = 16493 - msb;
             xSignifier <<= 127 - msb;
           }
@@ -908,7 +957,7 @@ library ABDKMathQuad {
 
         if (xSignifier == 0x80000000000000000000000000000000) {
           if (resultNegative) resultSignifier += 1;
-          uint256 shift = 112 - msb (resultSignifier);
+          uint256 shift = 112 - mostSignificantBit (resultSignifier);
           resultSignifier <<= shift;
           resultExponent -= shift;
         } else {
@@ -916,7 +965,7 @@ library ABDKMathQuad {
           while (resultSignifier < 0x10000000000000000000000000000) {
             resultSignifier <<= 1;
             resultExponent -= 1;
-  
+
             xSignifier *= xSignifier;
             uint256 b = xSignifier >> 255;
             resultSignifier += b ^ bb;
@@ -925,9 +974,10 @@ library ABDKMathQuad {
         }
 
         return bytes16 (uint128 ((resultNegative ? 0x80000000000000000000000000000000 : 0) |
-            resultExponent << 112 | resultSignifier & 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFF));
+        resultExponent << 112 | resultSignifier & 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFF));
       }
     }
+  }
   }
 
   /**
@@ -937,7 +987,9 @@ library ABDKMathQuad {
    * @return quadruple precision number
    */
   function ln (bytes16 x) internal pure returns (bytes16) {
+  unchecked {
     return mul (log_2 (x), 0x3FFE62E42FEFA39EF35793C7673007E5);
+  }
   }
 
   /**
@@ -947,6 +999,7 @@ library ABDKMathQuad {
    * @return quadruple precision number
    */
   function pow_2 (bytes16 x) internal pure returns (bytes16) {
+  unchecked {
     bool xNegative = uint128 (x) > 0x80000000000000000000000000000000;
     uint256 xExponent = uint128 (x) >> 112 & 0x7FFF;
     uint256 xSignifier = uint128 (x) & 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
@@ -1120,6 +1173,7 @@ library ABDKMathQuad {
       return bytes16 (uint128 (resultExponent << 112 | resultSignifier));
     }
   }
+  }
 
   /**
    * Calculate e^x.
@@ -1128,7 +1182,9 @@ library ABDKMathQuad {
    * @return quadruple precision number
    */
   function exp (bytes16 x) internal pure returns (bytes16) {
+  unchecked {
     return pow_2 (mul (x, 0x3FFF71547652B82FE1777D0FFDA0D23A));
+  }
   }
 
   /**
@@ -1138,7 +1194,8 @@ library ABDKMathQuad {
    * @return index of the most significant non-zero bit in binary representation
    *         of x
    */
-  function msb (uint256 x) private pure returns (uint256) {
+  function mostSignificantBit (uint256 x) private pure returns (uint256) {
+  unchecked {
     require (x > 0);
 
     uint256 result = 0;
@@ -1153,5 +1210,6 @@ library ABDKMathQuad {
     if (x >= 0x2) result += 1; // No need to shift x anymore
 
     return result;
+  }
   }
 }

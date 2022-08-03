@@ -7,7 +7,7 @@ import "./FSDVestingVC.sol";
 import "./FSDVestingKOL.sol";
 import "../dependencies/FSOwnable.sol";
 
-pragma solidity =0.6.8;
+pragma solidity 0.8.3;
 pragma experimental ABIEncoderV2;
 
 /**

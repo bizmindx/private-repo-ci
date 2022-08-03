@@ -5,7 +5,7 @@ import "../interfaces/IERC20ConvictionScore.sol";
 import "../timelock/Timelock.sol";
 import "../dependencies/DSMath.sol";
 
-pragma solidity =0.6.8;
+pragma solidity 0.8.3;
 pragma experimental ABIEncoderV2;
 
 /**
@@ -853,7 +853,7 @@ contract FairSideDAO is IFairSideDAO {
     }
 
     // gets the chainid from current network
-    function getChainId() internal pure returns (uint256) {
+    function getChainId() internal view returns (uint256) {
         uint256 chainId;
         // solhint-disable-next-line
         assembly {

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Unlicense
 
-import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "../interfaces/IFairSideDAO.sol";
 import "../interfaces/IFSDVesting.sol";
@@ -10,7 +10,7 @@ import "../dependencies/DSMath.sol";
 import "../dependencies/FSOwnable.sol";
 import "../dependencies/SafeUint224.sol";
 
-pragma solidity =0.6.8;
+pragma solidity 0.8.3;
 pragma experimental ABIEncoderV2;
 
 /**

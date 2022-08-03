@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: Unlicense
 
-pragma solidity =0.6.8;
+pragma solidity 0.8.3;
 
 abstract contract ProtocolConstants {
     /* ========== CONSTANTS ========== */
 
-   
+
 }

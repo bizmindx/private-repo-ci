@@ -1,10 +1,8 @@
-const hre = require("hardhat");
-const { web3 } = require("@openzeppelin/test-helpers/src/setup");
-const { expect } = require("chai");
-const { ethers } = require("hardhat");
+import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
+import { ethers } from "hardhat";
 
 async function main() {
-  let owner = await ethers.getSigner();
+  let owner: SignerWithAddress = await ethers.getSigners();
 
   let MockToken = await ethers.getContractFactory("MockToken");
   let aave = await MockToken.connect(owner).deploy("AAVE", "AAVE", 18);
@@ -26,7 +24,7 @@ async function main() {
     let privateKey = await ethers.Wallet.createRandom();
     let provider = ethers.getDefaultProvider();
     let newAcc = new ethers.Wallet(privateKey, provider);
-    
+
     console.log("Created new account with address : ", newAcc.address);
 
     console.log("Give new created account random positions on AAVE and Curve");
@@ -51,39 +49,53 @@ async function main() {
       to: newAcc.address,
       value: ethers.utils.parseEther("100"),
     });
-    
-    
+
     await owner.sendTransaction({
-        to: newAcc.address,
-        value: ethers.utils.parseEther("100"),
-      });
-   
+      to: newAcc.address,
+      value: ethers.utils.parseEther("100"),
+    });
 
-   await sleep(20000)
+    await sleep(20000);
 
-    await sendTx(owner.sendTransaction({
-      to: fsd.address,
-      value: ethers.utils.parseEther("5"),
-    }));
+    await sendTx(
+      owner.sendTransaction({
+        to: fsd.address,
+        value: ethers.utils.parseEther("5"),
+      })
+    );
     console.log("Sent 10 eth to the new address");
 
-    let transfer = await sendTx(fsd
-      .connect(owner)
-      .transfer(newAcc.address, ethers.utils.parseEther("1000"), {
-        gasLimit: 7500000,
-      }));
-    
-    console.log("Balance of new account FSD : ", await fsd.balanceOf(newAcc.address));
-    console.log("Balance of new account ETH : ", await provider.getBalance(newAcc.address));
+    let transfer = await sendTx(
+      fsd
+        .connect(owner)
+        .transfer(newAcc.address, ethers.utils.parseEther("1000"), {
+          gasLimit: 7500000,
+        })
+    );
+
+    console.log(
+      "Balance of new account FSD : ",
+      await fsd.balanceOf(newAcc.address)
+    );
+    console.log(
+      "Balance of new account ETH : ",
+      await provider.getBalance(newAcc.address)
+    );
     console.log("Transfered 1000 FSD to the new address");
 
-    await sendTx(fsd
-      .connect(newAcc)
-      .approve(fsdNetwork.address, ethers.utils.parseEther("1000000000"), { gasLimit: 7500000 }));
-    await sendTx(fsdNetwork
-      .connect(newAcc)
-      .purchaseMembershipETH({value: ethers.utils.parseEther("1"), gasLimit: 7500000 }));
-    
+    await sendTx(
+      fsd
+        .connect(newAcc)
+        .approve(fsdNetwork.address, ethers.utils.parseEther("1000000000"), {
+          gasLimit: 7500000,
+        })
+    );
+    await sendTx(
+      fsdNetwork.connect(newAcc).purchaseMembershipETH({
+        value: ethers.utils.parseEther("1"),
+        gasLimit: 7500000,
+      })
+    );
 
     console.log("Payed a new membership for 1 eth for the new address");
 

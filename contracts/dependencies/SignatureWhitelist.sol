@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: Unlicense
 
-pragma solidity =0.6.8;
+pragma solidity 0.8.3;
 
-import "@openzeppelin/contracts/cryptography/ECDSA.sol";
-import "@openzeppelin/contracts/drafts/EIP712.sol";
+import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
+import "@openzeppelin/contracts/utils/cryptography/draft-EIP712.sol";
 
 /**
  * @dev Implementation of {SignatureWhitelist} contract.

@@ -1,14 +1,13 @@
 // SPDX-License-Identifier: Unlicense
 
-pragma solidity =0.6.8;
+pragma solidity 0.8.3;
 
 import "./ITributeAccrual.sol";
 
 interface IERC20ConvictionScore is ITributeAccrual {
-    function getPriorConvictionScore(address user, uint256 blockNumber)
-        external
-        view
-        returns (uint224);
+    function getPriorConvictionScore(address user, uint256 blockNumber) external view returns (uint224);
+
+    function getConvictionScore(address user) external view returns (uint224);
 
     function governanceThreshold() external view returns (uint256);
 
@@ -23,6 +22,8 @@ interface IERC20ConvictionScore is ITributeAccrual {
     function registerTribute(uint256 num) external;
 
     function registerGovernanceTribute(uint256 num) external;
+
+    function getTotalAvailableConviction() external view returns (uint256);
 
     // function claimTribute(uint256 num) external;
 

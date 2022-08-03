@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Unlicense
 
-pragma solidity =0.6.8;
+pragma solidity 0.8.3;
 
 import "@openzeppelin/contracts/utils/Address.sol";
 import "./DSMath.sol";
@@ -59,7 +59,9 @@ contract Withdrawable {
         require(reserveAmount > 0, "FSD::withdraw: Insufficient Withdrawal");
         delete availableWithdrawal[msg.sender];
         pendingWithdrawals = pendingWithdrawals.sub(reserveAmount);
-        msg.sender.sendValue(reserveAmount);
+
+        address payable sender = payable(msg.sender);
+        sender.sendValue(reserveAmount);
     }
 
     /* ========== RESTRICTED FUNCTIONS ========== */

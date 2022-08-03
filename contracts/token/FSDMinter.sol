@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: Unlicense
 
-pragma solidity =0.6.8;
+pragma solidity 0.8.3;
 pragma experimental ABIEncoderV2;
 
 import "@openzeppelin/contracts/utils/Address.sol";
-import "@openzeppelin/contracts/drafts/IERC20Permit.sol";
+import "@openzeppelin/contracts/token/ERC20/extensions/draft-ERC20Permit.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "../dependencies/SignatureWhitelist.sol";
 import "../dependencies/DSMath.sol";
@@ -152,11 +152,11 @@ contract FSDMinter is SignatureWhitelist, FSOwnable {
         onlyOwner
     {
         require(
-            _vestingFactory != IFSDVestingFactory(0),
+            _vestingFactory != IFSDVestingFactory(address(0)),
             "Vesting::setVestingFactory: Cannot be the zero address"
         );
         require(
-            vestingFactory == IFSDVestingFactory(0),
+            vestingFactory == IFSDVestingFactory(address(0)),
             "Vesting::setVestingFactory: Already set"
         );
         vestingFactory = _vestingFactory;
@@ -310,7 +310,7 @@ contract FSDMinter is SignatureWhitelist, FSOwnable {
         uint256[] memory _amounts
     ) private {
         uint256 userLength = _users.length;
-        require(userLength == _amounts.length, "FSD:: Different sized arrays");
+        require(userLength == _amounts.length, "FSDMinter::_mintInternalPremine: Different sized arrays");
 
         for (uint256 i = 0; i < userLength; i++) {
             _createVestingPremine(_phase, _users[i], _amounts[i]);
@@ -365,11 +365,11 @@ contract FSDMinter is SignatureWhitelist, FSOwnable {
     }
 
     function _onlyValidPhase(IFSD.Phase _phase) private {
-        require(fsd.currentPhase() == _phase, "FSD:: Invalid Phase");
+        require(fsd.currentPhase() == _phase, "FSDMinter::_onlyValidPhase: Invalid Phase");
     }
 
     function _onlyWL(bytes memory _sig, address _user) private {
-        require(_whitelist(_sig, _user), "FSD:: Not whitelisted");
+        require(_whitelist(_sig, _user), "FSDMinter::_onlyWL: Not whitelisted");
     }
 
     /* ========== MODIFIERS ========== */

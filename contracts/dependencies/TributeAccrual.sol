@@ -1,12 +1,13 @@
 // SPDX-License-Identifier: Unlicense
 
-pragma solidity =0.6.8;
+pragma solidity 0.8.3;
 
-import "@openzeppelin/contracts/math/SafeMath.sol";
-import "@openzeppelin/contracts/drafts/ERC20Permit.sol";
+import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+import "@openzeppelin/contracts/token/ERC20/extensions/draft-ERC20Permit.sol";
 import "../dependencies/SafeUint32.sol";
 import "../dependencies/SafeUint224.sol";
 import "../interfaces/IERC20ConvictionScore.sol";
+import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol";
 
 /**
  * @dev Implementation of {TributeAccrual} contract.
@@ -21,7 +22,7 @@ import "../interfaces/IERC20ConvictionScore.sol";
  * Provides function to view and claim the claimable tribute amounts for users.
  */
 // solhint-disable not-rely-on-time, var-name-mixedcase, reason-string /*
-abstract contract TributeAccrual is ERC20Permit, IERC20ConvictionScore {
+abstract contract TributeAccrual is IERC20ConvictionScore, ERC20Permit {
     /* ========== LIBRARIES ========== */
 
     using SafeMath for uint256;

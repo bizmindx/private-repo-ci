@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: Unlicense
 
-pragma solidity =0.6.8;
+pragma solidity 0.8.3;
 
 import "@openzeppelin/contracts/utils/Address.sol";
-import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol";
 import "../dependencies/ERC20ConvictionScore.sol";
 import "../dependencies/Withdrawable.sol";
@@ -223,7 +223,6 @@ contract FSD is FSOwnable, ABC, ERC20ConvictionScore, Withdrawable, IFSD {
     function claimAvailableTributes(uint256 num) external override {
         _claimTribute(num);
         if (
-            isGovernance[msg.sender] &&
             governanceThreshold <=
             getPriorConvictionScore(
                 msg.sender,
@@ -240,6 +239,16 @@ contract FSD is FSOwnable, ABC, ERC20ConvictionScore, Withdrawable, IFSD {
             "FSD::phaseAdvance: FSD is already at its final phase"
         );
         currentPhase = Phase(uint8(currentPhase) + 1);
+    }
+
+    /**
+    *
+     * @notice updates the currentPhase based on the passed Phase Enum value
+     * @param newPhase - Phase enumeration values 0 - 4
+     * @dev only Admin owner can call method
+     */
+    function updateCurrentPhase(Phase newPhase) external onlyOwner {
+        currentPhase = newPhase;
     }
 
     /**
@@ -409,7 +418,7 @@ contract FSD is FSOwnable, ABC, ERC20ConvictionScore, Withdrawable, IFSD {
      * Requirements:
      * - only callable by {owner} or {timelock} contract.
      */
-    function updateGovernanceMinimumBalance(int256 _governanceMinimumBalance)
+    function updateGovernanceMinimumBalance(uint256 _governanceMinimumBalance)
         external
         onlyTimelockOrOwner
     {
@@ -430,24 +439,6 @@ contract FSD is FSOwnable, ABC, ERC20ConvictionScore, Withdrawable, IFSD {
     }
 
     /**
-     * @dev Allows setting convictionless status of the {user}.
-     * It also resets the conviction if it is already set.
-     *
-     * Requirements:
-     * - only callable by {owner} or {timelock} contract.
-     */
-    function setConvictionless(address user, bool isConvictionless)
-        external
-        onlyTimelockOrOwner
-    {
-        convictionless[user] = isConvictionless;
-
-        if (getPriorConvictionScore(user, block.number - 1) != 0) {
-            _resetConviction(user);
-        }
-    }
-
-    /**
      * @dev Sets membership fee.
      *
      * Requirements:
@@ -455,25 +446,6 @@ contract FSD is FSOwnable, ABC, ERC20ConvictionScore, Withdrawable, IFSD {
      */
     function setTributeFee(uint256 _tributeFee) external onlyTimelockOrOwner {
         tributeFee = _tributeFee;
-    }
-
-    /**
-     * @dev Allows updating of {FairSideConviction} address. Invocable only once.
-     *
-     * Requirements:
-     * - only callable by {owner} contract
-     * - the param {_fairSideConviction} cannot be a zero address value
-     */
-    function setFairSideConviction(address _fairSideConviction)
-        external
-        onlyOwner
-    {
-        require(
-            fairSideConviction == IFairSideConviction(0),
-            "FSD::setFairSideConviction: Already Set!"
-        );
-        fairSideConviction = IFairSideConviction(_fairSideConviction);
-        convictionless[_fairSideConviction] = true;
     }
 
     /**
@@ -485,10 +457,22 @@ contract FSD is FSOwnable, ABC, ERC20ConvictionScore, Withdrawable, IFSD {
      */
     function setFairSideNetwork(IFSDNetwork _fsdNetwork) external onlyOwner {
         require(
-            fsdNetwork == IFSDNetwork(0),
+            fsdNetwork == IFSDNetwork(address(0)),
             "FSD::setFairSideNetwork: Already Set!"
         );
         fsdNetwork = _fsdNetwork;
+    }
+
+    function setFairSideConviction(address _fairSideConviction)
+    external
+    onlyOwner
+    {
+        require(
+            fairSideConviction == IFairSideConviction(address(0)),
+            "FSD::setFairSideConviction: Already Set!"
+        );
+        fairSideConviction = IFairSideConviction(_fairSideConviction);
+//        convictionless[_fairSideConviction] = true;
     }
 
     /**
@@ -505,7 +489,6 @@ contract FSD is FSOwnable, ABC, ERC20ConvictionScore, Withdrawable, IFSD {
         );
         require(minter == address(0), "Vesting::setMinter: Already set");
         minter = _minter;
-        convictionless[address(minter)] = true;
     }
 
     /**
@@ -559,7 +542,7 @@ contract FSD is FSOwnable, ABC, ERC20ConvictionScore, Withdrawable, IFSD {
         //     _bestowGovernanceStatus(to);
         // }
 
-        _mint(to, mintAmount);
+        super._mint(to, mintAmount);
 
         if (fundingPool.balance < 500 ether) {
             // See: https://github.com/dapphub/ds-math#wmul

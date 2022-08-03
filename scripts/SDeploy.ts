@@ -3,33 +3,14 @@
 //
 // When running the script with `npx hardhat run <script>` you'll find the Hardhat
 // Runtime Environment's members available in the global scope.
-const hre = require("hardhat");
-const { web3 } = require("@openzeppelin/test-helpers/src/setup");
-const { expect } = require("chai");
-
-
-const SIGNER_ACCOUNT = {
-  publicKey: "0xC6C23De51657dd9C2C4F921Ffa66CCFe3C2FbFD9",
-  privateKey: Buffer.from(
-    "4626faca3179addddacb3cb60ba3fe5b0943d11de9afbded0154b379df7ba5f4",
-    "hex"
-  ),
-};
-
-const createPoolNewAddress = () => {
-  const addr = web3.eth.accounts.create();
-  console.log("Address : ", addr.address);
-  console.log("PrivateKey : ", addr.privateKey);
-  return web3.utils.toChecksumAddress(addr.address);
-};
+import { ethers } from "hardhat";
+import { createPoolNewAddress, SIGNER_ACCOUNT } from "../test/helpers/base";
 
 async function main() {
-
   let [owner, acc2, acc3, accUSA] = await ethers.getSigners();
-  
+
   console.log("Deploying contract with owner address : ", owner.address);
   console.log("Signer account : ", SIGNER_ACCOUNT.publicKey);
-
 
   // Deploy pools
   const fundingPool = createPoolNewAddress();
@@ -38,53 +19,58 @@ async function main() {
   console.log("Created premiums pool with address : ", premiumsPool);
 
   // Deploy timelock
-  let timelock = await ethers.getContractFactory("Timelock");
-  timelock = await timelock.connect(owner).deploy(owner.address, 360000);
-  await timelock.deployed()
+  const Timelock = await ethers.getContractFactory("Timelock");
+  let timelock = await Timelock.connect(owner).deploy(owner.address, 360000);
+  await timelock.deployed();
   console.log("Created timelock with address : ", timelock.address);
 
   // Deploy formula
-  let formula = await ethers.getContractFactory("FairSideFormula");
-  formula = await formula.connect(owner).deploy();
-  await formula.deployed()
+  const Formula = await ethers.getContractFactory("FairSideFormula");
+  let formula = await Formula.connect(owner).deploy();
+  await formula.deployed();
   console.log("Created formula with address : ", formula.address);
 
   // Deploy FSD
-  let fsd = await ethers.getContractFactory("FSD", {
+  const FSD = await ethers.getContractFactory("FSD", {
     libraries: {
       FairSideFormula: formula.address,
     },
   });
-  fsd = await fsd.connect(owner).deploy(fundingPool, timelock.address);
-  await fsd.deployed()
+  let fsd = await FSD.connect(owner).deploy(fundingPool, timelock.address);
+  await fsd.deployed();
   console.log("Created fsd with address : ", fsd.address);
 
   // Deploy conviction
-  let conviction = await ethers.getContractFactory("FairSideConviction");
-  conviction = await conviction.connect(owner).deploy(fsd.address);
-  await conviction.deployed()
+  const Conviction = await ethers.getContractFactory("FairSideConviction");
+  let conviction = await Conviction.connect(owner).deploy(fsd.address);
+  await conviction.deployed();
   console.log("Created conviction with address : ", conviction.address);
 
   // Deploy dao
-  let dao = await ethers.getContractFactory("FairSideDAO");
-  dao = await dao
-    .connect(owner)
-    .deploy(timelock.address, fsd.address, owner.address);
-    await dao.deployed()
+  const DAO = await ethers.getContractFactory("FairSideDAO");
+  let dao = await DAO.connect(owner).deploy(
+    timelock.address,
+    fsd.address,
+    owner.address
+  );
+  await dao.deployed();
   console.log("Created dao with address : ", dao.address);
 
   // Deploy minter
-  let minter = await ethers.getContractFactory("FSDMinter");
-  minter = await minter
-    .connect(owner)
-    .deploy(fsd.address, SIGNER_ACCOUNT.publicKey);
-    await minter.deployed()
+  const Minter = await ethers.getContractFactory("FSDMinter");
+  let minter = await Minter.connect(owner).deploy(
+    fsd.address,
+    SIGNER_ACCOUNT.publicKey
+  );
+  await minter.deployed();
   console.log("Created minter with address : ", minter.address);
 
   // Deploy vesting factory
-  let vestingFactory = await ethers.getContractFactory("FSDVestingFactory");
-  vestingFactory = await vestingFactory.connect(owner).deploy(minter.address);
-  await vestingFactory.deployed()
+  const VestingFactory = await ethers.getContractFactory("FSDVestingFactory");
+  let vestingFactory = await VestingFactory.connect(owner).deploy(
+    minter.address
+  );
+  await vestingFactory.deployed();
   console.log(
     "Created vesting factory with address : ",
     vestingFactory.address
@@ -95,22 +81,20 @@ async function main() {
   console.log("Setting the vesting contract factory");
 
   // Deploy Network
-  let fsdNetwork = await ethers.getContractFactory("FSDNetwork", {
+  const FSDNetwork = await ethers.getContractFactory("FSDNetwork", {
     libraries: {
       FairSideFormula: formula.address,
     },
   });
-  fsdNetwork = await fsdNetwork
-    .connect(owner)
-    .deploy(
-      fsd.address,
-      fundingPool,
-      premiumsPool,
-      owner.address,
-      timelock.address
-    );
+  let fsdNetwork = await FSDNetwork.connect(owner).deploy(
+    fsd.address,
+    fundingPool,
+    premiumsPool,
+    owner.address,
+    timelock.address
+  );
 
-    await fsdNetwork.deployed()
+  await fsdNetwork.deployed();
 
   console.log("Created network with address : ", fsdNetwork.address);
 
@@ -135,34 +119,30 @@ async function main() {
   console.log("Setting the crs type to fsd network");
 
   // Deploy Vesting pre
-  let vestingPRE = await ethers.getContractFactory("FSDVestingPRE");
-  vestingPRE = await vestingPRE
-    .connect(owner)
-    .deploy(
-      fsd.address,
-      vestingFactory.address,
-      minter.address,
-      dao.address,
-      conviction.address
-    );
-await vestingPRE.deployed()
+  const VestingPRE = await ethers.getContractFactory("FSDVestingPRE");
+  let vestingPRE = await VestingPRE.connect(owner).deploy(
+    fsd.address,
+    vestingFactory.address,
+    minter.address,
+    dao.address,
+    conviction.address
+  );
+  await vestingPRE.deployed();
   console.log(
     "Created vesting pre template with address : ",
     vestingPRE.address
   );
 
   // Deploy Vesting KOL
-  let vestingKOL = await ethers.getContractFactory("FSDVestingKOL");
-  vestingKOL = await vestingKOL
-    .connect(owner)
-    .deploy(
-      fsd.address,
-      vestingFactory.address,
-      minter.address,
-      dao.address,
-      conviction.address
-    );
-    await vestingKOL.deployed()
+  const VestingKOL = await ethers.getContractFactory("FSDVestingKOL");
+  let vestingKOL = await VestingKOL.connect(owner).deploy(
+    fsd.address,
+    vestingFactory.address,
+    minter.address,
+    dao.address,
+    conviction.address
+  );
+  await vestingKOL.deployed();
 
   console.log(
     "Created vesting kol template with address : ",
@@ -170,17 +150,15 @@ await vestingPRE.deployed()
   );
 
   // Deploy Vesting VC
-  let vestingVC = await ethers.getContractFactory("FSDVestingVC");
-  vestingVC = await vestingVC
-    .connect(owner)
-    .deploy(
-      fsd.address,
-      vestingFactory.address,
-      minter.address,
-      dao.address,
-      conviction.address
-    );
-    await vestingVC.deployed()
+  const VestingVC = await ethers.getContractFactory("FSDVestingVC");
+  let vestingVC = await VestingVC.connect(owner).deploy(
+    fsd.address,
+    vestingFactory.address,
+    minter.address,
+    dao.address,
+    conviction.address
+  );
+  await vestingVC.deployed();
 
   console.log("Created vesting vc template with address : ", vestingVC.address);
 
@@ -196,7 +174,7 @@ await vestingPRE.deployed()
       .connect(owner)
       .mintPremine([owner.address], [ethers.utils.parseEther("1100000")])
   );
-  
+
   console.log("Minted the premine");
   const ownerVesting = await minter.userVesting(owner.address);
   console.log("Owner Vesting : ", ownerVesting);
@@ -273,7 +251,6 @@ await vestingPRE.deployed()
 
   await sendTx(fsd.phaseAdvance());
   await sendTx(fsd.phaseAdvance());
-
 }
 
 // We recommend this pattern to be able to use async/await everywhere

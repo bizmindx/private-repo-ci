@@ -1,14 +1,11 @@
 // SPDX-License-Identifier: Unlicense
 
-pragma solidity =0.6.8;
+pragma solidity 0.8.3;
 
-import "@openzeppelin/contracts/cryptography/ECDSA.sol";
-import "@openzeppelin/contracts/drafts/EIP712.sol";
+import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
+import "@openzeppelin/contracts/utils/cryptography/draft-EIP712.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 import "@openzeppelin/contracts/utils/Address.sol";
-import "@uniswap/lib/contracts/libraries/FixedPoint.sol";
-
 import "../interfaces/chainlink/AggregatorV3Interface.sol";
 import "../dependencies/FairSideFormula.sol";
 import "../dependencies/DSMath.sol";
@@ -40,7 +37,6 @@ contract FSDNetwork is EIP712 {
     using SafeERC20 for FSD;
     using Address for address payable;
     using DSMath for uint256;
-    using FixedPoint for FixedPoint.uq112x112;
 
     /* ========== STATE VARIABLES ========== */
 
@@ -100,7 +96,7 @@ contract FSDNetwork is EIP712 {
 
     // Membership data
     mapping(address => Membership) public membership;
-    // Cost Share Requests
+    // Cost Share Requests 
     mapping(uint256 => CostShareRequest) public costShareRequests;
     // Network assessor members
     address[3] public assessors;
@@ -112,7 +108,7 @@ contract FSDNetwork is EIP712 {
     uint256 public totalOpenRequests;
     // Slippage Tolerance for stable payouts, starts at 5%
     uint256 public slippageTolerance = 5;
-    // 4% membership fee
+    // 4% membership fee in decimal = 0.04
     uint256 public membershipFee = 0.04 ether;
     // Data entry proposed by the DAO
     mapping(uint256 => bool) public approvedCsrTypes;
@@ -120,7 +116,7 @@ contract FSDNetwork is EIP712 {
     // Submit CSR Action
     bytes32 private constant CSR_ACTION =
         keccak256("Action(uint256 id, uint8 action)");
-    // FSD Token Address
+    // FSD Token contract Address
     FSD private immutable fsd;
     // Funding Pool Address
     address private immutable FUNDING_POOL;
@@ -135,18 +131,20 @@ contract FSDNetwork is EIP712 {
     uint256 private constant STAKING_REWARDS = 0.20 ether;
     // 7.5% as governance rewards and funding pool
     uint256 private constant GOVERNANCE_FUNDING_POOL_REWARDS = 0.075 ether;
-    // 90% as 10% is unshareable cost request which is personal responsibility of user
+    // 90% in decimal as 10% is unshareable cost request which is personal responsibility of user
     uint256 private constant NON_USA = 0.9 ether;
     // FSD TWAP Window
     uint256 public constant PERIOD = 1 hours;
     // Duration of membership (MEMBERSHIP_DURATION)
-    uint256 public constant MEMBERSHIP_DURATION = 730 days;
+    uint256 public constant MEMBERSHIP_DURATION = 365 days;
+    //Duration of membership grace period 
+    uint256 public constant GRACE_PERIOD_DURATION = 60 days;
+
     // Chainlink Oracle (Ether)
     AggregatorV3Interface private constant ETH_CHAINLINK =
         AggregatorV3Interface(0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419);
 
     /* ========== EVENTS ========== */
-
     // An event emitted when a membership is purchased (either new or an extension)
     event NewMembership(address member, uint256 benefits, uint256 fee);
 
@@ -155,7 +153,7 @@ contract FSDNetwork is EIP712 {
         uint256 id,
         address beneficiary,
         uint256 payoutAmount,
-        bool inStable,
+        bool inStablecoin,
         uint256 csrType,
         uint256 timestamp
     );
@@ -322,8 +320,7 @@ contract FSDNetwork is EIP712 {
             user.creation = block.timestamp;
             user.gracePeriod =
                 membership[msg.sender].creation +
-                MEMBERSHIP_DURATION +
-                60 days;
+                MEMBERSHIP_DURATION + GRACE_PERIOD_DURATION;
         } else {
             if (
                 ((block.timestamp - user.creation) * 1 ether) /
@@ -422,7 +419,7 @@ contract FSDNetwork is EIP712 {
             user.gracePeriod =
                 membership[msg.sender].creation +
                 MEMBERSHIP_DURATION +
-                60 days;
+                GRACE_PERIOD_DURATION;
         } else {
             uint256 elapsedDurationPercentage = ((block.timestamp -
                 user.creation) * 1 ether) / MEMBERSHIP_DURATION;
@@ -469,7 +466,7 @@ contract FSDNetwork is EIP712 {
      *
      * It accepts parameter {ethAmount} representing claim amount of which only
      * 90% is paid in cross share benefits while the remaining 10% are unshareable.
-     * The parameter {inStable} represents if the CSR's payout should be in ETH or
+     * The parameter {inStablecoin} represents if the CSR's payout should be in ETH or
      * Stablecoin (DAI).
      *
      * Updates the {totalOpenRequests} (if the payout is in ETH) and {openCostShareBenefits} of the member.
@@ -485,7 +482,7 @@ contract FSDNetwork is EIP712 {
      */
     function openCostShareRequest(
         uint256 ethAmount,
-        bool inStable,
+        bool inStablecoin,
         uint256 _csrType
     ) external {
         Membership memory user = membership[msg.sender];
@@ -525,20 +522,22 @@ contract FSDNetwork is EIP712 {
             0,
             _csrType
         );
+        ///update openCostShareBenefits
         membership[msg.sender].openCostShareBenefits = user
             .openCostShareBenefits
             .add(requestPayout);
 
-        if (inStable) {
+        ///if in stablecoin process in DAI
+        if (inStablecoin) {
             uint256 etherPrice = getEtherPrice();
             // 5% slippage protection
-            uint256 dai = fsd.liquidateEth(
+            uint256 daiAmount = fsd.liquidateEth(
                 requestPayout,
                 (requestPayout.mul(etherPrice) / 1 ether).mul(
                     100 - slippageTolerance
                 ) / 100
             );
-            costShareRequests[id].stableAmount = dai;
+            costShareRequests[id].stableAmount = daiAmount;
         } else {
             totalOpenRequests = totalOpenRequests.add(requestPayout);
         }
@@ -547,7 +546,7 @@ contract FSDNetwork is EIP712 {
             id,
             msg.sender,
             requestPayout,
-            inStable,
+            inStablecoin,
             _csrType,
             block.timestamp
         );
@@ -555,12 +554,12 @@ contract FSDNetwork is EIP712 {
         uint256 halfBounty = bounty / 2;
         // 50% locked
         fsd.safeTransferFrom(msg.sender, address(this), halfBounty);
-        // 50% sent to DAO for manual unlocking based on offchain tracking
-        fsd.safeTransferFrom(
-            msg.sender,
-            GOVERNANCE_ADDRESS,
-            bounty - halfBounty
+        // 50% sent to FSD as governance rewards
+        fsd.safeTransfer(
+            address(fsd),
+            halfBounty
         );
+        fsd.registerGovernanceTribute(halfBounty);
     }
 
     /**
@@ -720,6 +719,10 @@ contract FSDNetwork is EIP712 {
     function setMembershipWallets(address[2] calldata _wallets) external {
         Membership memory user = membership[msg.sender];
         require(
+            user.wallets[0] == address(0) && user.wallets[1] == address(0),
+            "FSDNetwork::setMembershipWallets: Membership wallet already set"
+        );
+        require(
             user.gracePeriod >= block.timestamp,
             "FSDNetwork::setMembershipWallets: Membership expired"
         );
@@ -737,7 +740,7 @@ contract FSDNetwork is EIP712 {
             user.wallets[0] == address(0) && user.wallets[1] == address(0),
             "FSDNetwork::setMembershipWallets: Cannot have more than three wallets per membership"
         );
-
+        
         membership[msg.sender].wallets = _wallets;
     }
 
