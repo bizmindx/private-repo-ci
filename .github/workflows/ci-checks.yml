@@ -25,6 +25,8 @@ jobs:
         run: yarn compile
       - name: Deploy Contracts Locally
         run: yarn deploy
+        id: deployment-successful
+
       # - name: Interact With Contracts
       #   run: yarn interact
 
@@ -36,21 +38,24 @@ jobs:
       # uses: ./.github/actions/setup
       - name: Lint Contracts
         run: yarn lint:contracts
+        continue-on-error: true
 
   tests:
     name: unit tests
-    # needs: compile-and-deploy-contracts
+    needs: compile-and-deploy-contracts
     runs-on: ubuntu-latest
     steps:
       # - name: Wait for compilation to succeed
       - uses: actions/checkout@v3
-      - name: Wait for tests to succeed
-        uses: lewagon/wait-on-check-action@v1.0.0
-        with:
-          ref: master
-          check-name: test
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          wait-interval: 25
+      - name: Compile contracts
+        run: yarn compile
+      # - name: Wait for tests to succeed
+      #   uses: lewagon/wait-on-check-action@v1.0.0
+      #   with:
+      #     ref: master
+      #     check-name: test
+      #     repo-token: ${{ secrets.GITHUB_TOKEN }}
+      #     wait-interval: 25
 
       # - name: Set up environment
       # uses: ./.github/actions/setup
