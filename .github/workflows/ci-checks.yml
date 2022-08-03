@@ -32,8 +32,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up environment
-        uses: ./.github/actions/setup
+      # - name: Set up environment
+      # uses: ./.github/actions/setup
       - name: Lint Contracts
         run: yarn lint:contracts
 
