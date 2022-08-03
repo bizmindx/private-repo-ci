@@ -39,13 +39,21 @@ jobs:
 
   tests:
     name: unit tests
-    needs: compile-and-deploy-contracts
+    # needs: compile-and-deploy-contracts
     runs-on: ubuntu-latest
     steps:
       # - name: Wait for compilation to succeed
       - uses: actions/checkout@v3
-      - name: Set up environment
-        uses: ./.github/actions/setup
+      - name: Wait for tests to succeed
+        uses: lewagon/wait-on-check-action@v1.0.0
+        with:
+          ref: master
+          check-name: test
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 25
+
+      # - name: Set up environment
+      # uses: ./.github/actions/setup
       - name: Run Test
         run: yarn test
 
@@ -61,8 +69,8 @@ jobs:
   audit:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up environment
-        uses: ./.github/actions/setup
+      # - uses: actions/checkout@v3
+      # - name: Set up environment
+      # uses: ./.github/actions/setup
       - name: Audit packages for vulnerabilities
         run: yarn audit
