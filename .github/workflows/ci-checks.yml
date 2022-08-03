@@ -42,7 +42,6 @@ jobs:
 
   tests:
     name: unit tests
-    needs: compile-and-deploy-contracts
     runs-on: ubuntu-latest
     steps:
       # - name: Wait for compilation to succeed
@@ -58,7 +57,7 @@ jobs:
       #     wait-interval: 25
 
       # - name: Set up environment
-      # uses: ./.github/actions/setup
+      #   uses: ./.github/actions/setup
       - name: Run Test
         run: yarn test
 
