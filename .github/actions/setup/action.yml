@@ -24,4 +24,4 @@ runs:
 
     - name: Install dependencies
       shell: bash
-      run: yarn install --ignore-scripts --offline
+      run: yarn install --ignore-scripts
