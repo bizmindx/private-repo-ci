@@ -46,6 +46,8 @@ jobs:
     steps:
       # - name: Wait for compilation to succeed
       - uses: actions/checkout@v3
+      - name: Set up environment
+        uses: ./.github/actions/setup
       - name: Compile contracts
         run: yarn compile
       # - name: Wait for tests to succeed
@@ -56,8 +58,6 @@ jobs:
       #     repo-token: ${{ secrets.GITHUB_TOKEN }}
       #     wait-interval: 25
 
-      # - name: Set up environment
-      #   uses: ./.github/actions/setup
       - name: Run Test
         run: yarn test
 
